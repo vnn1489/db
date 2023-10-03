@@ -31,3 +31,46 @@ SELECT "TitleOfColunm" FROM "TableName" ---> PRESS ENTER KEY
 SELECT * FROM TableName WHERE (age < 18 AND status = 'active') OR (age > 60 AND status = 'retired');
 Example: Retrieve all rows where either (age is less than 18 and status is 'active') or (age is greater than 60 and status is 'retired').
 
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" IS NULL;
+
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" IS NOT NULL
+
+# COMBINE "LIKE" WITH % (ANY CHARACTER) AND _ (MATCH MANY SINGLE CHARACTER) WILl BECOMES POWERFUL & 'LIKE' WILL BE NOT DO NOT DISCRIMINATE UPPER AND LOWER CASE
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" LIKE '%SetValueToGet%' ---> TO USE ONE %
+
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" LIKE 'SetValueToGet%' ---> TO USE TWO % ---> ISSUE: 'the%' MAYBE there, they, them,....
+	...> WHERE "TitleOfColunm" LIKE 'SetValueToGet %' ---> TO FIX: 'the %'
+
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" LIKE 'SetValueToGet%SetNumberToGet%' --->
+
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" LIKE 'P_re'; ---> TO GET Pyre OR Pire OR ... WITH USE ONE _
+
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" LIKE 'T___'; ---> TO GET MANY SINGLE CHARACTER WITH MANY _ (IN THIS CASE IS THREE _)
+
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm" = 'SetValueToGet'; ---> WITH '=' WILL BE DISCRIMINATE UPPER AND LOWER CASE
+
+# USE < > >= <= TO QUERYING DATA
+SELECT "TitleOfColunm" FROM "TableName"
+	...> WHERE "TitleOfColunm0" >= SetNumberToGet0 AND "TitleOfColunm1" <= SetNumberToGet1;
+	...> WHERE "TitleOfColunm" BETWEEN SetNumberToGet0 AND <= SetNumberToGet1; ---> SIMILARLY
+
+#
+SELECT "TitleOfColunm" FROM "TableName"
+	# DEFAULTF LEAST TO GREATEST
+	...> ORDER BY "TitleOfColunm" LIMIT SetNumberToGet;
+	OR
+	...> ORDER BY "TitleOfColunm" ASC LIMIT SetNumberToGet;
+
+	# GREATEST TO LEAST
+	...> ORDER BY "TitleOfColunm" DESC LIMIT SetNumberToGet;
+
+
+
