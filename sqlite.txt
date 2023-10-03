@@ -1,0 +1,33 @@
+CONDITIONS IN SQL: =, != AND <> IN THE SAME
+
+sqlite3 FileName.db
+
+.exit OR .quit ---> TO EXIT ENVIRONMENT SQLITE
+.tables ---> TO LIST ALL TABLES ARE EXIST
+.schema TableName ---> TO SHOW ALL COLUNM EXIST INSIDE TABLE
+
+SELECT * FROM "TableName"; ---> GET ALL ROW & COLUNM
+SELECT "TitleOfColunm" FROM "TableName";
+SELECT "TitleOfColunm0", "TitleOfColunm1", "TitleOfColunm..." FROM "TableName";
+
+# SetValueToGet SHOULD BE Number OR 'String'
+SELECT "title" FROM "albums" LIMIT SetNumberToGet;
+
+# SetValueToGet SHOULD BE Number OR 'String'
+SELECT "TitleOfColunm" FROM "TableName" WHERE "TitleOfColunm" = SetValueToGet;
+SELECT "TitleOfColunm" FROM "TableName" WHERE NOT "TitleOfColunm" = SetValueToGet;
+SELECT "TitleOfColunm" FROM "TableName" WHERE "TitleOfColunm0" = SetValueToGet0 OR "TitleOfColunm1" = SetValueToGet1;
+
+# SetValueToGet SHOULD BE Number OR 'String'
+# OR CONTINUE QUERYING WHEN SHOWING ...>
+SELECT "TitleOfColunm" FROM "TableName" WHERE "TitleOfColunm" = SetValueToGet ---> PRESS ENTER
+	...> OR "TitleOfColunm0" = SetValueToGet;
+
+# SetValueToGet SHOULD BE Number OR 'String'
+SELECT "TitleOfColunm" FROM "TableName" ---> PRESS ENTER KEY
+	...> WHERE ("TitleOfColunm0" = SetValueToGet0 OR "TitleOfColunm1" = SetValueToGet1) ---> PRESS ENTER KEY
+	...> AND "TitleOfColunm" != SetValueToGet;
+
+SELECT * FROM TableName WHERE (age < 18 AND status = 'active') OR (age > 60 AND status = 'retired');
+Example: Retrieve all rows where either (age is less than 18 and status is 'active') or (age is greater than 60 and status is 'retired').
+
