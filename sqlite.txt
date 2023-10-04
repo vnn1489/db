@@ -1,3 +1,5 @@
+---- QUERYING ----
+
 CONDITIONS IN SQL: =, != AND <> IN THE SAME
 
 sqlite3 FileName.db
@@ -65,12 +67,24 @@ SELECT "TitleOfColunm" FROM "TableName"
 #
 SELECT "TitleOfColunm" FROM "TableName"
 	# DEFAULTF LEAST TO GREATEST
-	...> ORDER BY "TitleOfColunm" LIMIT SetNumberToGet;
-	OR
-	...> ORDER BY "TitleOfColunm" ASC LIMIT SetNumberToGet;
+	...> ORDER BY "TitleOfColunm" LIMIT SetNumberToGet;	OR	...> ORDER BY "TitleOfColunm" ASC LIMIT SetNumberToGet;
 
+SELECT "TitleOfColunm" FROM "TableName"
 	# GREATEST TO LEAST
 	...> ORDER BY "TitleOfColunm" DESC LIMIT SetNumberToGet;
 
+SELECT "TitleOfColunm" FROM "TableName"
+	...> ORDER BY "TitleOfColunm" OR ...> ORDER BY "TitleOfColunm" ASC; ---> SORT ALPHA ASCENDING
+	...> ORDER BY "TitleOfColunm" DESC; ---> SORT ALPHA DESCENDING
+
+# SQL's AGGREGATE FUNCTIONS (COUNT, AVG, MIN, MAX, SUM)
+SELECT AVG("TitleOfColunm") FROM "TableName"; ---> TAKE EVERYTHING CAN
+SELECT ROUND(AVG("TitleOfColunm"), SetNumberToGet) FROM "TableName"; ---> TAKE ACCORDING TO NEED & WITH TITLE NAME OF COLUNM IS DEFAULTF
+SELECT ROUND(AVG("TitleOfColunm"), SetNumberToGet) AS "SetTitleName" FROM "TableName"; ---> TAKE ACCORDING TO NEED & SET TITLE NAME OF COLUNM DO YOU WANT
+SELECT COUNT(*) FROM "TableName"; ---> GET SUM NUMBER LINE OF TableName INSIDE DATABASE
+SELECT COUNT("TitleOfColunm") FROM "TableName"; ---> GET SUM NUMBER LINE OF TitleOfColunm INSIDE TableName OF DATABASE
+SELECT DISTINCT "TitleOfColunm" FROM "TableName"; ---> GET ALL VALUE OF ROWS & FILLTER VALUES DUPLICATE
+
+---- RELATING ----
 
 
