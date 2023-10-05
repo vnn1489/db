@@ -9,82 +9,91 @@ sqlite3 FileName.db
 .schema TableName ---> TO SHOW ALL COLUNM EXIST INSIDE TABLE
 
 SELECT * FROM "TableName"; ---> GET ALL ROW & COLUNM
-SELECT "TitleOfColunm" FROM "TableName";
-SELECT "TitleOfColunm0", "TitleOfColunm1", "TitleOfColunm..." FROM "TableName";
+SELECT "TitleOfColumn" FROM "TableName";
+SELECT "TitleOfColumn0", "TitleOfColumn1", "TitleOfColumn..." FROM "TableName";
 
 # SetValueToGet SHOULD BE Number OR 'String'
-SELECT "title" FROM "albums" LIMIT SetNumberToGet;
+SELECT "TitleOfColumn" FROM "albums" LIMIT SetValueToGet;
 
 # SetValueToGet SHOULD BE Number OR 'String'
-SELECT "TitleOfColunm" FROM "TableName" WHERE "TitleOfColunm" = SetValueToGet;
-SELECT "TitleOfColunm" FROM "TableName" WHERE NOT "TitleOfColunm" = SetValueToGet;
-SELECT "TitleOfColunm" FROM "TableName" WHERE "TitleOfColunm0" = SetValueToGet0 OR "TitleOfColunm1" = SetValueToGet1;
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" = SetValueToGet;
+SELECT "TitleOfColumn" FROM "TableName" WHERE NOT "TitleOfColumn" = SetValueToGet;
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn0" = SetValueToGet0 OR "TitleOfColumn1" = SetValueToGet1;
 
 # SetValueToGet SHOULD BE Number OR 'String'
 # OR CONTINUE QUERYING WHEN SHOWING ...>
-SELECT "TitleOfColunm" FROM "TableName" WHERE "TitleOfColunm" = SetValueToGet ---> PRESS ENTER
-	...> OR "TitleOfColunm0" = SetValueToGet;
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" = SetValueToGet ---> PRESS ENTER
+	...> OR "TitleOfColumn0" = SetValueToGet;
 
 # SetValueToGet SHOULD BE Number OR 'String'
-SELECT "TitleOfColunm" FROM "TableName" ---> PRESS ENTER KEY
-	...> WHERE ("TitleOfColunm0" = SetValueToGet0 OR "TitleOfColunm1" = SetValueToGet1) ---> PRESS ENTER KEY
-	...> AND "TitleOfColunm" != SetValueToGet;
+SELECT "TitleOfColumn" FROM "TableName" ---> PRESS ENTER KEY
+	...> WHERE ("TitleOfColumn0" = SetValueToGet0 OR "TitleOfColumn1" = SetValueToGet1) ---> PRESS ENTER KEY
+	...> AND "TitleOfColumn" != SetValueToGet;
 
 SELECT * FROM TableName WHERE (age < 18 AND status = 'active') OR (age > 60 AND status = 'retired');
 Example: Retrieve all rows where either (age is less than 18 and status is 'active') or (age is greater than 60 and status is 'retired').
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" IS NULL;
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" IS NULL;
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" IS NOT NULL
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" IS NOT NULL
 
 # COMBINE "LIKE" WITH % (ANY CHARACTER) AND _ (MATCH MANY SINGLE CHARACTER) WILl BECOMES POWERFUL & 'LIKE' WILL BE NOT DO NOT DISCRIMINATE UPPER AND LOWER CASE
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" LIKE '%SetValueToGet%' ---> TO USE ONE %
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" LIKE '%SetValueToGet%' ---> TO USE ONE %
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" LIKE 'SetValueToGet%' ---> TO USE TWO % ---> ISSUE: 'the%' MAYBE there, they, them,....
-	...> WHERE "TitleOfColunm" LIKE 'SetValueToGet %' ---> TO FIX: 'the %'
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" LIKE 'SetValueToGet%' ---> TO USE TWO % ---> ISSUE: 'the%' MAYBE there, they, them,....
+	...> WHERE "TitleOfColumn" LIKE 'SetValueToGet %' ---> TO FIX: 'the %'
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" LIKE 'SetValueToGet%SetNumberToGet%' --->
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" LIKE 'SetValueToGet%SetNumberToGet%' --->
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" LIKE 'P_re'; ---> TO GET Pyre OR Pire OR ... WITH USE ONE _
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" LIKE 'P_re'; ---> TO GET Pyre OR Pire OR ... WITH USE ONE _
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" LIKE 'T___'; ---> TO GET MANY SINGLE CHARACTER WITH MANY _ (IN THIS CASE IS THREE _)
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" LIKE 'T___'; ---> TO GET MANY SINGLE CHARACTER WITH MANY _ (IN THIS CASE IS THREE _)
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm" = 'SetValueToGet'; ---> WITH '=' WILL BE DISCRIMINATE UPPER AND LOWER CASE
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn" = 'SetValueToGet'; ---> WITH '=' WILL BE DISCRIMINATE UPPER AND LOWER CASE
 
 # USE < > >= <= TO QUERYING DATA
-SELECT "TitleOfColunm" FROM "TableName"
-	...> WHERE "TitleOfColunm0" >= SetNumberToGet0 AND "TitleOfColunm1" <= SetNumberToGet1;
-	...> WHERE "TitleOfColunm" BETWEEN SetNumberToGet0 AND <= SetNumberToGet1; ---> SIMILARLY
+SELECT "TitleOfColumn" FROM "TableName"
+	...> WHERE "TitleOfColumn0" >= SetNumberToGet0 AND "TitleOfColumn1" <= SetNumberToGet1;
+	...> WHERE "TitleOfColumn" BETWEEN SetNumberToGet0 AND <= SetNumberToGet1; ---> SIMILARLY
 
 #
-SELECT "TitleOfColunm" FROM "TableName"
+SELECT "TitleOfColumn" FROM "TableName"
 	# DEFAULTF LEAST TO GREATEST
-	...> ORDER BY "TitleOfColunm" LIMIT SetNumberToGet;	OR	...> ORDER BY "TitleOfColunm" ASC LIMIT SetNumberToGet;
+	...> ORDER BY "TitleOfColumn" LIMIT SetNumberToGet;	OR	...> ORDER BY "TitleOfColumn" ASC LIMIT SetNumberToGet;
 
-SELECT "TitleOfColunm" FROM "TableName"
+SELECT "TitleOfColumn" FROM "TableName"
 	# GREATEST TO LEAST
-	...> ORDER BY "TitleOfColunm" DESC LIMIT SetNumberToGet;
+	...> ORDER BY "TitleOfColumn" DESC LIMIT SetNumberToGet;
 
-SELECT "TitleOfColunm" FROM "TableName"
-	...> ORDER BY "TitleOfColunm" OR ...> ORDER BY "TitleOfColunm" ASC; ---> SORT ALPHA ASCENDING
-	...> ORDER BY "TitleOfColunm" DESC; ---> SORT ALPHA DESCENDING
+SELECT "TitleOfColumn" FROM "TableName"
+	...> ORDER BY "TitleOfColumn" OR ...> ORDER BY "TitleOfColumn" ASC; ---> SORT ALPHA ASCENDING
+	...> ORDER BY "TitleOfColumn" DESC; ---> SORT ALPHA DESCENDING
 
 # SQL's AGGREGATE FUNCTIONS (COUNT, AVG, MIN, MAX, SUM)
-SELECT AVG("TitleOfColunm") FROM "TableName"; ---> TAKE EVERYTHING CAN
-SELECT ROUND(AVG("TitleOfColunm"), SetNumberToGet) FROM "TableName"; ---> TAKE ACCORDING TO NEED & WITH TITLE NAME OF COLUNM IS DEFAULTF
-SELECT ROUND(AVG("TitleOfColunm"), SetNumberToGet) AS "SetTitleName" FROM "TableName"; ---> TAKE ACCORDING TO NEED & SET TITLE NAME OF COLUNM DO YOU WANT
+SELECT AVG("TitleOfColumn") FROM "TableName"; ---> TAKE EVERYTHING CAN
+SELECT ROUND(AVG("TitleOfColumn"), SetNumberToGet) FROM "TableName"; ---> TAKE ACCORDING TO NEED & WITH TITLE NAME OF COLUNM IS DEFAULTF
+SELECT ROUND(AVG("TitleOfColumn"), SetNumberToGet) AS "SetTitleName" FROM "TableName"; ---> TAKE ACCORDING TO NEED & SET TITLE NAME OF COLUNM DO YOU WANT
 SELECT COUNT(*) FROM "TableName"; ---> GET SUM NUMBER LINE OF TableName INSIDE DATABASE
-SELECT COUNT("TitleOfColunm") FROM "TableName"; ---> GET SUM NUMBER LINE OF TitleOfColunm INSIDE TableName OF DATABASE
-SELECT DISTINCT "TitleOfColunm" FROM "TableName"; ---> GET ALL VALUE OF ROWS & FILLTER VALUES DUPLICATE
+SELECT COUNT("TitleOfColumn") FROM "TableName"; ---> GET SUM NUMBER LINE OF TitleOfColumn INSIDE TableName OF DATABASE
+SELECT DISTINCT "TitleOfColumn" FROM "TableName"; ---> GET ALL VALUE OF ROWS & FILLTER VALUES DUPLICATE
 
 ---- RELATING ----
+# SUBQUERIES
+# SetValueToGet SHOULD BE Number OR 'String'
+SELECT "TitleOfColumn0" FROM "TableName0"
+wHERE "TitleOfColumn1" = (
+	SELECT "TitleOfColumn2" FROM "TableName1"
+	WHERE "TitleOfColumn3" = SetValueToGet
+);
+
+# RESEARCH "JOIN" METHOD
 
 
