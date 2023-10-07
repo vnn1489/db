@@ -1,13 +1,15 @@
 ---- QUERYING ----
 
 CONDITIONS IN SQL: =, != AND <> IN THE SAME
-
+---- ACCESS DATABASE ----
 sqlite3 FileName.db
 
+---- OPERATION WITH DATABASE ----
 .exit OR .quit ---> TO EXIT ENVIRONMENT SQLITE
 .tables ---> TO LIST ALL TABLES ARE EXIST
 .schema TableName ---> TO SHOW ALL COLUNM EXIST INSIDE TABLE
 
+---- QUERY WITH DATABASE ----
 SELECT * FROM "TableName"; ---> GET ALL ROW & COLUNM
 SELECT "TitleOfColumn" FROM "TableName";
 SELECT "TitleOfColumn0", "TitleOfColumn1", "TitleOfColumn..." FROM "TableName";
