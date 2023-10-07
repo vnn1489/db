@@ -8,6 +8,8 @@ sqlite3 FileName.db
 .exit OR .quit ---> TO EXIT ENVIRONMENT SQLITE
 .tables ---> TO LIST ALL TABLES ARE EXIST
 .schema TableName ---> TO SHOW ALL COLUNM EXIST INSIDE TABLE
+.headers on ---> TO SET SHOW HEADER
+.mode column ---> TO SET COLUNM FORMAT
 
 ---- QUERY WITH DATABASE ----
 SELECT * FROM "TableName"; ---> GET ALL ROW & COLUNM
@@ -99,3 +101,7 @@ wHERE "TitleOfColumn1" = (
 # RESEARCH "JOIN" METHOD
 
 
+
+
+
+how to ignore ' when search 'string's'

@@ -14,12 +14,25 @@ SELECT "title" FROM "episodes" WHERE "topic" IS NULL;
 SELECT "title" FROM "episodes" WHERE "air_date" IS '2004-12-31';
 
 6. list the titles of episodes from season 6 (2008) that were released early, in 2007.
-SELECT "title", "season", "air_date" FROM "episodes" WHERE ("season" = 6 AND "air_date" LIKE '2007%');
+SELECT "title" FROM "episodes" WHERE ("season" = 6 AND "air_date" LIKE '2007%');
 
 7. write a SQL query to list the titles and topics of all episodes teaching "fractions".
 SELECT "title", "topic" FROM "episodes" WHERE topic LIKE '%Fractions%';
 
-8. write a query that counts the number of episodes released in the last 5 years, from 2018 to 2023, inclusive.
-SELECT COUNT (*) FROM (SELECT "air_date" FROM "episodes" WHERE "air_date" BETWEEN '2018-04-16' AND '2023-04-28');
+8. write a query that counts the number of episodes released in the last 5 years, from 2018 to 2023, inclusive. (****)
+SELECT COUNT (*) FROM (SELECT "air_date" FROM "episodes" WHERE "air_date" BETWEEN '2018-01-01' AND '2023-31-12'); ---> CAN USES DATA NOT EXIST INSIDE DATABASE TO DO CONDITION. IN THIS CASE, 2018-01-01 & 2023-31-12 NOT EXIST INSIDE DATABASE
 
-9. write a query that counts the number of episodes released in Cyberchase’s first 5 years, from 2002 to 2007, inclusive.
+9. write a query that counts the number of episodes released in Cyberchase’s first 5 years, from 2002 to 2007, inclusive. (****)
+SELECT COUNT (*) FROM(SELECT "air_date" FROM "episodes" WHERE "air_date" BETWEEN '2002-01-21' AND '2007-12-12');
+
+10. write a SQL query to list the ids, titles, and production codes of all episodes. Order the results by production code, from earliest to latest.
+SELECT "id", "title", "production_code" FROM "episodes" ORDER BY "production_code";
+
+11. list the titles of episodes from season 5, in reverse alphabetical order.
+SELECT "title" FROM "episodes" WHERE "season" = 5 ORDER BY "title" DESC;
+
+12. count the number of unique episode titles. (**** | ???? | RESULT IS 1 row, 1 column & sum is 136)
+SELECT COUNT(*) FROM (SELECT "episode_in_season" FROM "episodes" WHERE "episode_in_season" = 1);
+
+13. lay tat ca data thuoc season: 4 & co episode in season: 4.
+SELECT * FROM "episodes" WHERE ("season" = 4 AND "episode_in_season" = 4);
