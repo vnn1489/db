@@ -1,0 +1,8 @@
+--SELECT first_name, last_name FROM players WHERE birth_country IS NOT 'USA' ORDER BY ASC;
+
+SELECT first_name, last_name FROM players WHERE birth_country = IS NOT  (
+
+);
+
+	SELECT first_name, last_name, birth_country FROM players WHERE birth_country ISNULL
+--SELECT first_name, last_name, birth_country  FROM players WHERE birth_country IS 'USA';

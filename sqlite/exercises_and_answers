@@ -1,10 +1,9 @@
-NOTE    ****: OPTIMAL POSSIBLE
 NOTE    ????: PROBLEM
 
 
 
 
-CYBERCHASE      https://cs50.harvard.edu/sql/2023/psets/0/cybercha      se/
+CYBERCHASE      https://cs50.harvard.edu/sql/2023/psets/0/cyberchase/
 
 CYBERCHASE      1. write a SQL query to list the titles of all episodes in Cyberchase’s original season, Season 1. (1 column and 26 rows)
                 >>>> SELECT "title" FROM "episodes" WHERE "season" = 1;
@@ -39,7 +38,7 @@ CYBERCHASE      10. write a SQL query to list the ids, titles, and production co
 CYBERCHASE      11. list the titles of episodes from season 5, in reverse alphabetical order. (1 column and 10 rows)
                 >>>> SELECT "title" FROM "episodes" WHERE "season" = 5 ORDER BY "title" DESC;
 
-CYBERCHASE      12. count the number of unique episode titles. (1 column and 1 row & sum is 136 | **** | ????)
+CYBERCHASE      12. count the number of unique episode titles. (1 column and 1 row & sum is 136 | ????)
                 >>>> SELECT COUNT(*) FROM (SELECT "episode_in_season" FROM "episodes" WHERE "episode_in_season" = 1);
 
 CYBERCHASE      13. lay tat ca data thuoc season: 4 & co episode in season: 4. (DEPEN BY ME)
@@ -89,34 +88,34 @@ VIEWS   10. write a SQL query to answer a question of your choice about the prin
 PLAYERS https://cs50.harvard.edu/sql/2023/psets/0/players/
 
 PLAYERS 1. write a SQL query to find the hometown (including city, state, and country) of Jackie Robinson. (3 columns and 1 row)
-        >>>>
+        >>>> SELECT birth_city, birth_state, birth_country FROM players WHERE (last_name = 'Robinson' AND first_name = 'Jackie');
 
-PLAYERS 2. write a SQL query to find the side (e.g., right or left) Babe Ruth hit. (1 column and 1 row)
-        >>>>
+PLAYERS 2. write a SQL query to find the side (e.g., right or left) Babe Ruth hit. (1 column and 1 row | ????)
+        >>>> 
 
 PLAYERS 3. write a SQL query to find the ids of rows for which a value in the column debut is missing. (1 column and 213 rows)
-        >>>>
+        >>>> SELECT id FROM players WHERE debut IS NULL;
 
 PLAYERS 4. write a SQL query to find the first and last names of players who were not born in the United States. Sort the results alphabetically by first name, then by last name. (2 columns and 2814 rows)
-        >>>>
+        >>>> 
 
 PLAYERS 5. write a SQL query to return the first and last names of all right-handed batters. Sort the results alphabetically by first name, then by last name. (2 columns and 12878 row)
-        >>>>
+        >>>> 
 
 PLAYERS 6. write a SQL query to return the first name, last name, and debut date of players born in Pittsburgh, Pennsylvania (PA). Sort the results first by debut date—from most recent to oldest—then alphabetically by first name, followed by last name. (3 columns and 134 rows)
-        >>>>
+        >>>> 
 
 PLAYERS 7. write a SQL query to count the number of players who bat (or batted) right-handed and throw (or threw) left-handed, or vice versa. (1 columns and 1 row)
-        >>>>
+        >>>> 
 
 PLAYERS 8. write a SQL query to find the average height and weight, rounded to two decimal places, of baseball players who debuted on or after January 1st, 2000. Return the columns with the name “Average Height” and “Average Weight”, respectively. (2 columns and 1 row)
-        >>>>
+        >>>> 
 
 PLAYERS 9. write a SQL query to find the players who played their final game in the MLB in 2022. Sort the results alphabetically by first name, then by last name. (2 columns and 516 rows)
-        >>>>
+        >>>> 
 
 PLAYERS 10. write SQL query to answer a question of your choice. This query should: (DEPEN BY ME)
                 - Make use of AS to rename a column
                 - Involve at least condition, using WHERE
                 - Sort by at least one column using ORDER BY
-        >>>>
+        >>>> 
