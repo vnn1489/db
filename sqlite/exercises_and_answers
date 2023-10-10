@@ -40,6 +40,9 @@ CYBERCHASE      11. list the titles of episodes from season 5, in reverse alphab
 
 CYBERCHASE      12. count the number of unique episode titles. (1 column and 1 row & sum is 136 | ????)
                 >>>> SELECT COUNT(*) FROM (SELECT "episode_in_season" FROM "episodes" WHERE "episode_in_season" = 1);
+                select * from episodes e where episode_in_season ='1'
+                SELECT distinct(title) from episodes e 
+                select count(distinct(title)) from episodes e 
 
 CYBERCHASE      13. lay tat ca data thuoc season: 4 & co episode in season: 4. (DEPEN BY ME)
                 >>>> SELECT * FROM "episodes" WHERE ("season" = 4 AND "episode_in_season" = 4);
@@ -97,25 +100,25 @@ PLAYERS 3. write a SQL query to find the ids of rows for which a value in the co
         >>>> SELECT id FROM players WHERE debut IS NULL;
 
 PLAYERS 4. write a SQL query to find the first and last names of players who were not born in the United States. Sort the results alphabetically by first name, then by last name. (2 columns and 2814 rows)
-        >>>> 
+        >>>> SELECT first_name, last_name FROM players WHERE (birth_country IS NOT 'USA' AND birth_country IS NOT NULL) ORDER BY first_name ASC;
 
 PLAYERS 5. write a SQL query to return the first and last names of all right-handed batters. Sort the results alphabetically by first name, then by last name. (2 columns and 12878 row)
-        >>>> 
+        >>>> SELECT first_name, last_name FROM players WHERE (bats IS 'R') ORDER BY first_name ASC;
 
 PLAYERS 6. write a SQL query to return the first name, last name, and debut date of players born in Pittsburgh, Pennsylvania (PA). Sort the results first by debut date—from most recent to oldest—then alphabetically by first name, followed by last name. (3 columns and 134 rows)
-        >>>> 
+        >>>> SELECT first_name, last_name, debut FROM players WHERE (birth_city IS 'Pittsburgh') ORDER BY debut DESC;
 
 PLAYERS 7. write a SQL query to count the number of players who bat (or batted) right-handed and throw (or threw) left-handed, or vice versa. (1 columns and 1 row)
-        >>>> 
+        >>>> SELECT COUNT(*) FROM (SELECT bats, throws FROM players WHERE (bats IS 'R' AND throws IS 'L'));
 
-PLAYERS 8. write a SQL query to find the average height and weight, rounded to two decimal places, of baseball players who debuted on or after January 1st, 2000. Return the columns with the name “Average Height” and “Average Weight”, respectively. (2 columns and 1 row)
-        >>>> 
+PLAYERS 8. write a SQL query to find the average height and weight, rounded to two decimal places, of baseball players who debuted on or after January 1st, 2000. Return the columns with the name “Average Height” and “Average Weight”, respectively. (2 columns and 1 row | ????)
+        >>>> SELECT weight, height, debut FROM players WHERE debut IS '1871-05-18'; ---> DRAFT
 
-PLAYERS 9. write a SQL query to find the players who played their final game in the MLB in 2022. Sort the results alphabetically by first name, then by last name. (2 columns and 516 rows)
-        >>>> 
+PLAYERS 9. write a SQL query to find the players who played their final game in the MLB in 2022. Sort the results alphabetically by first name, then by last name. (2 columns and 516 rows | ????)
+        >>>> select * from players p where final_game  between '2022-01-01' and '2022-12-31' order by first_name, last_name
 
 PLAYERS 10. write SQL query to answer a question of your choice. This query should: (DEPEN BY ME)
                 - Make use of AS to rename a column
                 - Involve at least condition, using WHERE
                 - Sort by at least one column using ORDER BY
-        >>>> 
+        >>>> SELECT first_name AS vnn1489 FROM players WHERE birth_year IS 1998 ORDER BY first_name ASC;

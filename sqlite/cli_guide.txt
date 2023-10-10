@@ -90,18 +90,14 @@ SELECT COUNT("TitleOfColumn") FROM "TableName"; ---> GET SUM NUMBER LINE OF Titl
 SELECT DISTINCT "TitleOfColumn" FROM "TableName"; ---> GET ALL VALUE OF ROWS & FILLTER VALUES DUPLICATE
 
 ---- RELATING ----
-# SUBQUERIES
-# SetValueToGet SHOULD BE Number OR 'String'
-SELECT "TitleOfColumn0" FROM "TableName0"
-wHERE "TitleOfColumn1" = (
-	SELECT "TitleOfColumn2" FROM "TableName1"
-	WHERE "TitleOfColumn3" = SetValueToGet
+THE EXPRESSION IN ( ) WILL BE RUN FIRST & RETURN THE QUERY RESULT
+
+SELECT "TitleOfColumn" FROM "TableName0"
+WHERE "TitleOfColumn" = (
+	SELECT "TitleOfColumn" FROM "TableName1"
+	WHERE "TitleOfColumn" = SetNumberToGet
 );
 
-# RESEARCH "JOIN" METHOD
-
-
-
-
-
-how to ignore ' when search 'string's'
+SELECT book_id FROM authored WHERE author_id = (
+	SELECT id FROM authours WHERE name = 'Fernanda Melchor';
+);
