@@ -168,3 +168,11 @@ PLAYERS 10. write SQL query to answer a question of your choice. This query shou
                 - Involve at least condition, using WHERE
                 - Sort by at least one column using ORDER BY
         >>>> SELECT "first_name" AS "vnn1489" FROM "players" WHERE "birth_year" IS 1998 ORDER BY "first_name" ASC;
+
+
+
+        fdsf
+        sdf
+        dsf
+        dsfdsf
+        dsff
