@@ -107,3 +107,36 @@ SELECT title FROM books WHERE id IN (
 
 SELECT * FROM sea_lions
 	JOIN migrations ON migrations.id = sea_lions.id;
+
+SELECT TitleOfColumn0 FROM TableName0
+	...> UNION
+	...> SELECT TitleOfColumn1 FROM TableName1
+
+SELECT author AS "profession", name FROM "authors" ---> GET author
+	...> UNION
+	...> SELECT translator AS "profession", name FROM "translators"; ---> GET translators
+
+SELECT name FROM authors
+	...> INTERSECT
+	...> SELECT name FROM translators;
+
+SELECT name FROM authors
+	...> EXCEPT
+	...> SELECT name FROM translators;
+
+SELECT book_id FROM translated WHERE translator_id = (
+	SELECT id FROM translators WHERE name = 'NNN'
+)
+INTERSECT
+SELECT book_id FROM translated WHERE translator_id = (
+	SELECT id FROM translators WHERE name = 'VNN'
+);
+
+SELECT book_id, AVG(rating) AS "average rating"
+	...> FROM ratings
+	...> GROUP BY book_id;
+
+SELECT book_id, ROUND(AVG(rating), 2) AS "average rating"
+	...> FROM ratings
+	...> GROUP BY book_id
+	...> HAVING average rating > SetNumberToGet;
