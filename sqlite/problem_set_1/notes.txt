@@ -1,0 +1,8 @@
+COMMON: https://cs50.harvard.edu/sql/2023/psets/1/
+
+
+
+
+https://cs50.harvard.edu/sql/2023/psets/1/packages/
+check50 cs50/problems/2023/sql/packages
+submit50 cs50/problems/2023/sql/packages
