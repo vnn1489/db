@@ -153,4 +153,11 @@ CREATE TABLE "SetNameTable0" (
 	...> "TitleOfColumn2" SetDataType
 	...> );
 
-DROP TABLE "TableNeedToDelete";
+DROP TABLE "TableNeedToDelete"; --->
+
+ALTER TABLE "NameTableExisting" RENAME TO "SetNewName"; ---> RENAME FOR TABLE
+
+ALTER TABLE "TableName" ADD COLUMN "SetNameForNewColumn" SetDataType; ---> ADD COLUMN FOR TABLE EXISTING
+
+ALTER TABLE "TableName" RENAME COLUMN "TitleOfColumn" TO "RenameForTitleOfColumn"; ---> RENAME FOR TITLE OF COLUMN INSIDE TABLE
+
