@@ -1,0 +1,57 @@
+1. Your colleague is preparing a map of all public schools in Massachusetts. In 1.sql, write a SQL query to find the names and cities of all public schools in Massachusetts.
+        - Keep in mind that not all schools in the schools table are considered traditional public schools. Massachusetts also recognizes charter schools, which (according to DESE!) are considered distinct. (2 columns and 1,761 rows)
+    >>>> SELECT type, city FROM schools WHERE type IS 'Public School';
+
+2. Your team is working on archiving old data. In 2.sql, write a SQL query to find the names of districts that are no longer operational.
+        - Districts that are no longer operational have “(non-op)” at the end of their name. (1 column and 121 rows)
+    >>>> SELECT name FROM districts WHERE name LIKE '%non-op%';
+
+3. The Massachusetts Legislature would like to learn how much money, on average, districts spent per-pupil last year. In 3.sql, write a SQL query to find the average per-pupil expenditure. Name the column “Average District Per-Pupil Expenditure”.
+        - Note the per_pupil_expenditure column in the expenditures table contains the average amount, per pupil, each district spent last year. You’ve been asked to find the average of this set of averages, weighting all districts equally regardless of their size. (1 column and 1 row)
+    >>>> SELECT AVG(per_pupil_expenditure) AS 'Average District Per-Pupil Expenditure' FROM expenditures;
+
+4. Some cities have more public schools than others. In 4.sql, write a SQL query to find the 10 cities with the most public schools. Your query should return the names of the cities and the number of public schools within them, ordered from greatest number of public schools to least. If two cities have the same number of public schools, order them alphabetically. (2 columns and 10 rows)
+    >>>> SELECT city, COUNT(*) AS public_school_count
+         FROM schools
+         WHERE type = 'Public School'
+         GROUP BY city
+         ORDER BY public_school_count DESC, city ASC
+         LIMIT 10;
+
+5. DESE would like you to determine in what cities additional public schools might be needed. In 5.sql, write a SQL query to find cities with 3 or fewer public schools. Your query should return the names of the cities and the number of public schools within them, ordered from greatest number of public schools to least. If two cities have the same number of public schools, order them alphabetically. (2 columns and 201 rows)
+    >>>> SELECT city, COUNT(*) AS public_school_count
+         FROM schools
+         WHERE type = 'Public School'
+         GROUP BY city
+         HAVING public_school_count <= 3
+         ORDER BY public_school_count DESC, city ASC;
+
+6. DESE wants to assess which schools achieved a 100% graduation rate. In 6.sql, write a SQL query to find the names of schools (public or charter!) that reported a 100% graduation rate. (1 column and 9 rows)
+    >>>> SELECT name FROM schools WHERE id IN (
+            SELECT id FROM graduation_rates WHERE graduated = 100
+         );
+
+7. DESE is preparing a report on schools in the city of Cambridge. In 7.sql, write a SQL query to find the names of schools (public or charter!) in the Cambridge school district. (1 column and 17 rows)
+    >>>> SELECT name
+         FROM schools
+         WHERE city LIKE '%Cambridge%' AND (type LIKE '%public%');
+
+8. A parent wants to send their child to a district with many other students. In 8.sql, write a SQL query to display the names of all school districts and the number of pupils enrolled in each. (2 columns and 396 rows)
+    >>>>
+
+9. Another parent wants to send their child to a district with few other students. In 9.sql, write a SQL query to find the name (or names) of the school district(s) with the single least number of pupils. Report only the name(s). (1 column and 1 row)
+    >>>>
+
+10. In Massachusetts, school district expenditures are in part determined by local taxes on property (e.g., home) values. In 10.sql, write a SQL query to find the 10 public school districts with the highest per-pupil expenditures. Your query should return the names of the districts and the per-pupil expenditure for each. (2 columns and 10 rows)
+    >>>>
+
+11. Is there a relationship between school expenditures and graduation rates? In 11.sql, write a SQL query to display the names of schools, their per-pupil expenditure, and their graduation rate. Sort the schools from greatest per-pupil expenditure to least. If two schools have the same per-pupil expenditure, sort by school name.
+        - You should assume a school spends the same amount per-pupil their district as a whole spends. (3 columns and 391 rows)
+    >>>>
+
+12. A parent asks you for advice on finding the best public school districts in Massachusetts. In 12.sql, write a SQL query to find public school districts with above-average per-pupil expenditures and an above-average percentage of teachers rated “exemplary”. Your query should return the districts’ names, along with their per-pupil expenditures and percentage of teachers rated exemplary. Sort the results first by the percentage of teachers rated exemplary (high to low), then by the per-pupil expenditure (high to low). (3 columns and 65 rows)
+    >>>>
+
+13. In 13.sql, write a SQL query to answer a question you have about the data! The query should:
+        - Involve at least one JOIN or subquery (DEPEN BY ME)
+    >>>>

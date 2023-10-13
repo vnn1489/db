@@ -1,5 +1,4 @@
 ---- QUERYING ----
-
 CONDITIONS IN SQL: =, != AND <> IN THE SAME
 ---- ACCESS DATABASE ----
 sqlite3 FileName.db
@@ -88,7 +87,10 @@ SELECT ROUND(AVG("TitleOfColumn"), SetNumberToGet) AS "SetTitleName" FROM "Table
 SELECT COUNT(*) FROM "TableName"; ---> GET SUM NUMBER LINE OF TableName INSIDE DATABASE
 SELECT COUNT("TitleOfColumn") FROM "TableName"; ---> GET SUM NUMBER LINE OF TitleOfColumn INSIDE TableName OF DATABASE
 SELECT DISTINCT "TitleOfColumn" FROM "TableName"; ---> GET ALL VALUE OF ROWS & FILLTER VALUES DUPLICATE
-
+.
+.
+.
+.
 ---- RELATING ----
 THE EXPRESSION IN ( ) WILL BE RUN FIRST & RETURN THE QUERY RESULT
 
@@ -140,3 +142,15 @@ SELECT book_id, ROUND(AVG(rating), 2) AS "average rating"
 	...> FROM ratings
 	...> GROUP BY book_id
 	...> HAVING average rating > SetNumberToGet;
+.
+.
+.
+.
+---- DESIGNING ----
+CREATE TABLE "SetNameTable0" (
+	...> "TitleOfColumn0" SetDataType,
+	...> "TitleOfColumn1" SetDataType,
+	...> "TitleOfColumn2" SetDataType
+	...> );
+
+DROP TABLE "TableNeedToDelete";
