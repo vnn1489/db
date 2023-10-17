@@ -36,14 +36,17 @@
          FROM schools
          WHERE city LIKE '%Cambridge%' AND (type LIKE '%public%');
 
-8. A parent wants to send their child to a district with many other students. In 8.sql, write a SQL query to display the names of all school districts and the number of pupils enrolled in each. (2 columns and 396 rows)
+8. A parent wants to send their child to a district with many other students. In 8.sql, write a SQL query to display the names of all school districts and the number of pupils enrolled in each. (2 columns and 396 rows | ????)
     >>>>
 
-9. Another parent wants to send their child to a district with few other students. In 9.sql, write a SQL query to find the name (or names) of the school district(s) with the single least number of pupils. Report only the name(s). (1 column and 1 row)
+9. Another parent wants to send their child to a district with few other students. In 9.sql, write a SQL query to find the name (or names) of the school district(s) with the single least number of pupils. Report only the name(s). (1 column and 1 row | ????)
     >>>>
 
 10. In Massachusetts, school district expenditures are in part determined by local taxes on property (e.g., home) values. In 10.sql, write a SQL query to find the 10 public school districts with the highest per-pupil expenditures. Your query should return the names of the districts and the per-pupil expenditure for each. (2 columns and 10 rows)
-    >>>>
+    >>>> SELECT ds.name, es.per_pupil_expenditure FROM expenditures es
+         INNER JOIN districts ds
+         ON es.district_id = ds.id
+         ORDER BY es.per_pupil_expenditure DESC LIMIT 10;
 
 11. Is there a relationship between school expenditures and graduation rates? In 11.sql, write a SQL query to display the names of schools, their per-pupil expenditure, and their graduation rate. Sort the schools from greatest per-pupil expenditure to least. If two schools have the same per-pupil expenditure, sort by school name.
         - You should assume a school spends the same amount per-pupil their district as a whole spends. (3 columns and 391 rows)
