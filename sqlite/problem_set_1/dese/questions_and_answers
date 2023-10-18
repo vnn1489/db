@@ -1,6 +1,13 @@
+https://cs50.harvard.edu/sql/2023/psets/1/dese/
+check50 cs50/problems/2023/sql/dese
+submit50 cs50/problems/2023/sql/dese
+
+
+
+
 1. Your colleague is preparing a map of all public schools in Massachusetts. In 1.sql, write a SQL query to find the names and cities of all public schools in Massachusetts.
         - Keep in mind that not all schools in the schools table are considered traditional public schools. Massachusetts also recognizes charter schools, which (according to DESE!) are considered distinct. (2 columns and 1,761 rows)
-    >>>> SELECT type, city FROM schools WHERE type IS 'Public School';
+    >>>> SELECT name, city FROM schools WHERE type IS 'Public School';
 
 2. Your team is working on archiving old data. In 2.sql, write a SQL query to find the names of districts that are no longer operational.
         - Districts that are no longer operational have “(non-op)” at the end of their name. (1 column and 121 rows)
@@ -28,7 +35,7 @@
 
 6. DESE wants to assess which schools achieved a 100% graduation rate. In 6.sql, write a SQL query to find the names of schools (public or charter!) that reported a 100% graduation rate. (1 column and 9 rows)
     >>>> SELECT name FROM schools WHERE id IN (
-	        SELECT school_id FROM graduation_rates WHERE graduated = 100
+	     	SELECT school_id FROM graduation_rates WHERE graduated = 100
          );
 
 7. DESE is preparing a report on schools in the city of Cambridge. In 7.sql, write a SQL query to find the names of schools (public or charter!) in the Cambridge school district. (1 column and 17 rows)
@@ -42,7 +49,7 @@
          INNER JOIN districts ON expenditures.district_id = districts.id
          ORDER BY expenditures.pupils DESC;
 
-9. Another parent wants to send their child to a district with few other students. In 9.sql, write a SQL query to find the name (or names) of the school district(s) with the single least number of pupils. Report only the name(s). (1 column and 1 row | ????)
+9. Another parent wants to send their child to a district with few other students. In 9.sql, write a SQL query to find the name (or names) of the school district(s) with the single least number of pupils. Report only the name(s). (1 column and 1 row)
     >>>> SELECT districts.name
          FROM expenditures
          INNER JOIN districts ON expenditures.district_id = districts.id
@@ -63,9 +70,5 @@
          JOIN graduation_rates ON schools.id = graduation_rates.school_id
          ORDER BY expenditures.per_pupil_expenditure DESC, schools.name ASC;
 
-12. A parent asks you for advice on finding the best public school districts in Massachusetts. In 12.sql, write a SQL query to find public school districts with above-average per-pupil expenditures and an above-average percentage of teachers rated “exemplary”. Your query should return the districts’ names, along with their per-pupil expenditures and percentage of teachers rated exemplary. Sort the results first by the percentage of teachers rated exemplary (high to low), then by the per-pupil expenditure (high to low). (3 columns and 65 rows)
-    >>>>
-
-13. write a SQL query to answer a question you have about the data! The query should:
-        - Involve at least one JOIN or subquery (DEPEN BY ME)
+12. A parent asks you for advice on finding the best public school districts in Massachusetts. In 12.sql, write a SQL query to find public school districts with above-average per-pupil expenditures and an above-average percentage of teachers rated “exemplary”. Your query should return the districts’ names, along with their per-pupil expenditures and percentage of teachers rated exemplary. Sort the results first by the percentage of teachers rated exemplary (high to low), then by the per-pupil expenditure (high to low). (3 columns and 65 rows | ????)
     >>>>

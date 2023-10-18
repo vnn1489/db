@@ -1,3 +1,10 @@
+https://cs50.harvard.edu/sql/2023/psets/1/packages/
+check50 cs50/problems/2023/sql/packages
+submit50 cs50/problems/2023/sql/packages
+
+
+
+
 ---- The Lost Letter ----
 ????: Clerk, my name’s Anneke. I live over at 900 Somerville Avenue. Not long ago, I sent out a special letter. It’s meant for my friend Varsha. She’s starting a new chapter of her life at 2 Finnegan Street, uptown. (That address, let me tell you: it was a bit tricky to get right the first time.) The letter is a congratulatory note—a cheery little paper hug from me to her, to celebrate this big move of hers. Can you check if it’s made its way to her yet?
 - At what type of address did the Lost Letter end up?: Residential
