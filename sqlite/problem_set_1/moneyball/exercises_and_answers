@@ -21,7 +21,7 @@ submit50 cs50/problems/2023/sql/moneyball
          WHERE player_id = (SELECT id FROM players WHERE first_name IS 'Cal' AND last_name IS 'Ripken')
          ORDER BY year DESC;
 
-3. Your team is going to need a great home run hitter. Ken Griffey Jr., a long-time Silver Slugger and Gold Glove award winner, might be a good prospect. In 3.sql, write a SQL query to find Ken Griffey Jr.’s home run history. (2 columns and 13 rows | ????)
+3. Your team is going to need a great home run hitter. Ken Griffey Jr., a long-time Silver Slugger and Gold Glove award winner, might be a good prospect. In 3.sql, write a SQL query to find Ken Griffey Jr.’s home run history. (2 columns and 13 rows)
     - Sort by year in descending order.
     - Note that there may be two players with the name “Ken Griffey.” This Ken Griffey was born in 1969.
     - Your query should return a table with two columns, one for year and one for home runs.
@@ -54,7 +54,7 @@ submit50 cs50/problems/2023/sql/moneyball
 		        SELECT id FROM players WHERE first_name IS 'Satchel' AND last_name IS 'Paige')
 	     );
 
-6. Which teams might be the biggest competition for the A’s this year? In 6.sql, write a SQL query to return the top 5 teams, sorted by the total number of hits by players in 2001. (2 columns and 5 rows)
+6. Which teams might be the biggest competition for the A’s this year? In 6.sql, write a SQL query to return the top 5 teams, sorted by the total number of hits by players in 2001. (2 columns and 5 rows | ????)
     - Call the column representing total hits by players in 2001 “total hits”.
     - Sort by total hits, highest to lowest.
     - Your query should return two columns, one for the teams’ names and one for their total hits in 2001.
@@ -64,7 +64,7 @@ submit50 cs50/problems/2023/sql/moneyball
          WHERE performances.year = 2001
          GROUP BY teams.name
          ORDER BY "total_hits" DESC
-         LIMIT 5;        
+         LIMIT 5;
 
 7. You need to make a recommendation about which player (or players) to avoid recruiting. In 7.sql, write a SQL query to find the name of the player who’s been paid the highest salary, of all time, in Major League Baseball. (2 columns and 1 row)
     - Your query should return a table with two columns, one for the player’s first name and one for their last name.
@@ -76,15 +76,27 @@ submit50 cs50/problems/2023/sql/moneyball
 
 8. How much would the A’s need to pay to get the best home run hitter this past season? In 8.sql, write a SQL query to find the 2001 salary of the player who hit the most home runs in 2001. (1 column and 1 row)
     - Your query should return a table with one column, the salary of the player.
-    >>>> 
+    >>>> SELECT salary FROM salaries WHERE player_id = (
+        	SELECT player_id
+        	FROM performances
+        	WHERE year IS 2001
+        	AND HR IS (SELECT MAX(HR) FROM performances)
+         )
+         AND year IS 2001;
 
 9. What salaries are other teams paying? In 9.sql, write a SQL query to find the 5 lowest paying teams (by average salary) in 2001. (2 columns and 5 rows)
     - Round the average salary column to two decimal places and call it “average salary”.
     - Sort the teams by average salary, least to greatest.
     - Your query should return a table with two columns, one for the teams’ names and one for their average salary.
-    >>>> 
+    >>>> SELECT teams.name, ROUND(AVG(salaries.salary), 2) AS average_salary
+         FROM teams
+         JOIN salaries ON salaries.team_id = teams.id
+         WHERE salaries.year IS 2001
+         GROUP BY salaries.team_id
+         ORDER BY average_salary ASC
+         LIMIT 5;
 
-10. The general manager has asked you for a report which details each player’s name, their salary for each year they’ve been playing, and their number of home runs for each year they’ve been playing. To be precise, the table should include: (5 columns and 14,915 rows)
+10. The general manager has asked you for a report which details each player’s name, their salary for each year they’ve been playing, and their number of home runs for each year they’ve been playing. To be precise, the table should include: (5 columns and 14,915 rows | ????)
     - All player’s first names
     - All player’s last names
     - All player’s salaries
@@ -92,7 +104,6 @@ submit50 cs50/problems/2023/sql/moneyball
     - The year in which the player was paid that salary and hit those home runs
 
 In 10.sql, write a query to return just such a table.
-
     - Order the results, first and foremost, by player’s IDs (least to greatest).
     - Order rows about the same player by year, in descending order.
     - Consider a corner case: suppose a player has multiple salaries or performances for a given year. Order them first by number of home runs, in descending order, followed by salary, in descending order.
@@ -100,21 +111,107 @@ In 10.sql, write a query to return just such a table.
     - Your query should return a table with five columns, per the above.
 
 view example table: sqlite/problem_set_1/moneyball/20231019.png
-    >>>> 
+    >>>> SELECT 
+             players.first_name, 
+             players.last_name, 
+             salaries.salary, 
+             performances.HR,
+             CASE
+                 WHEN salaries.year = performances.year AND salaries.year IS NOT NULL THEN salaries.year
+             END AS year
+         FROM players
+         JOIN salaries ON players.id = salaries.player_id
+         JOIN performances ON players.id = performances.player_id
+         WHERE 
+             performances.year IS NOT NULL 
+             AND salaries.year IS NOT NULL 
+             AND salaries.year = performances.year
+         ORDER BY 
+             players.id ASC,
+             year DESC,
+             performances.HR DESC, 
+             salaries.salary DESC;
 
-11. You need a player that can get hits. Who might be the most underrated? In 11.sql, write a SQL query to find the 10 least expensive players per hit in 2001. (3 columns and 10 rows)
+11. You need a player that can get hits. Who might be the most underrated? In 11.sql, write a SQL query to find the 10 least expensive players per hit in 2001. (3 columns and 10 rows | ????)
     - You can calculate a player’s salary per hit by dividing their 2001 salary by the number of hits they made in 2001. Call the column “dollars per hit”.
     - As in 10.sql, ensure that the salary’s year and the performance’s year match.
     - Dividing a salary by 0 hits will result in a NULL value. Avoid the issue by filtering out players with 0 hits.
     - Sort the table by the “dollars per hit” column, least to most expensive. If two players have the same “dollars per hit”, order by first name, followed by last name, in alphabetical order.
     - Your query should return a table with three columns, one for the players’ first names, one of their last names, and one called “dollars per hit”.
     - You may assume, for simplicity, that a player will only have one salary and one performance in 2001.
-    >>>> 
+    >>>> SELECT 
+             players.first_name, 
+             players.last_name, 
+             (salaries.salary / performances.H) AS "dollars per hit"
+         FROM players
+         JOIN salaries ON players.id = salaries.player_id
+         JOIN performances ON players.id = performances.player_id
+         WHERE 
+             performances.year = 2001
+             AND performances.H > 0
+             AND salaries.year = 2001
+         ORDER BY 
+             "dollars per hit" ASC, 
+             players.first_name ASC, 
+             players.last_name ASC
+         LIMIT 10;
 
-12. Hits are great, but so are RBIs! In 12.sql, write a SQL query to find the players among the 10 least expensive players per hit and among the 10 least expensive players per RBI in 2001. (2 columns and 6 rows)
+12. Hits are great, but so are RBIs! In 12.sql, write a SQL query to find the players among the 10 least expensive players per hit and among the 10 least expensive players per RBI in 2001. (2 columns and 6 rows | ???? | expected: Hunter, Torii)
     - You can calculate a player’s salary per RBI by dividing their 2001 salary by their number of RBIs in 2001.
     - Keep in mind the lessons you’ve learned in 10.sql and 11.sql!
     - Your query should return two columns, one for the players’ first names and one of their last names.
     - Order your results by player ID, least to greatest.
     - You may assume, for simplicity, that a player will only have one salary and one performance in 2001.
-    >>>> 
+    >>>> SELECT 
+             p1.first_name, 
+             p1.last_name
+         FROM
+             (SELECT 
+                 players.first_name, 
+                 players.last_name, 
+                 (salaries.salary / performances.H) AS dollars_per_hit
+             FROM 
+                 players
+             JOIN 
+                 salaries ON players.id = salaries.player_id
+             JOIN 
+                 performances ON players.id = performances.player_id
+             WHERE 
+                 performances.year = 2001
+                 AND performances.H > 0
+                 AND salaries.year = 2001
+             ORDER BY 
+                 dollars_per_hit ASC, 
+                 players.id ASC
+             LIMIT 10) p1
+         JOIN 
+             (SELECT 
+                 players.first_name, 
+                 players.last_name, 
+                 (salaries.salary / performances.RBI) AS dollars_per_RBI
+             FROM 
+                 players
+             JOIN 
+                 salaries ON players.id = salaries.player_id
+             JOIN 
+                 performances ON players.id = performances.player_id
+             WHERE 
+                 performances.year = 2001
+                 AND performances.RBI > 0
+                 AND salaries.year = 2001
+             ORDER BY 
+                 dollars_per_RBI ASC, 
+                 players.id ASC
+             LIMIT 10) p2
+         ON p1.first_name = p2.first_name AND p1.last_name = p2.last_name;
+
+
+
+
+
+
+
+
+
+
+
