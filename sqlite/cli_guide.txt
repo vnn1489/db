@@ -160,4 +160,34 @@ ALTER TABLE "NameTableExisting" RENAME TO "SetNewName"; ---> RENAME FOR TABLE
 ALTER TABLE "TableName" ADD COLUMN "SetNameForNewColumn" SetDataType; ---> ADD COLUMN FOR TABLE EXISTING
 
 ALTER TABLE "TableName" RENAME COLUMN "TitleOfColumn" TO "RenameForTitleOfColumn"; ---> RENAME FOR TITLE OF COLUMN INSIDE TABLE
+.
+.
+.
+.
+---- WRITING ----
+INSERT INTO TableName (TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ...)
+	...> VALUES (value0, value1, value1, ...);
+
+INSERT INTO TableName (TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ...)
+	...> VALUES
+	...> (value0, value1, value1, ...),
+	...> (value0, value1, value1, ...),
+	...> (value0, value1, value1, ...);
+
+.import --csv --skip 1 FileName.csv TableName
+
+.import --csv FileName.csv TempTabble ---> CREATE TABLE WITH NAME IS TempTabble, TITLE & DATA OF CSV FILE WILL BE IMPORT INTO temp TABLE.
+sqlite> SELECT * FROM temp; --- CHECK
+sqlite> INSERT INTO TableName (TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ...)
+	...> SELECT TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ... FROM TempTabble;
+sqlite> DROP TABLE TempTabble; ---> DELETE TempTabble AFTER IMPORT SUCCESS
+
+DELETE FROM TableName WHEER condition;
+
+DELETE FROM TableName WHERE TitleOfColumn < 'YYYY-MM-DD';
+
+FOREIGN KEY("artist_id") REFERENCES "artists"("id")
+ON DELETE **** ---> **** CAN BE IS (RESTRICT, NO ACTION, SET NULL, SET DEFAULTF, CASCADE)
+
+
 
