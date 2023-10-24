@@ -242,6 +242,72 @@ CREATE VIEW average_book_ratings AS
 ...> JOIN books ON ratings.book_id = books.id
 ...> GROUP BY book_id;
 
+	TEMPORARY VIEWS
+CREATE TEMPORARY VIEW average_ratings_by_year AS
+...> SELECT year, ROUND(AVG(rating), 2) AS rating FROM average_book_ratings
+...> GROUP BY year;
+SELECT * FROM average_ratings_by_year;
+---> IF RUN .quit, TEMPORARY TABLE WILL BE DELETE 
+
+	COMMON TABLE EXPRESSION - CTE
+DROP VIEW average_book_ratings;
+
+WITH average_book_ratings AS (
+...> SELECT book_id, title, year, ROUND(AVG(rating), 2) AS rating
+...> FROM ratings
+...> JOIN books ON ratings.book_id = books.id
+...> GROUP BY book_id
+...> )
+...> SELECT year, ROUND(AVG(rating), 2) AS rating
+...> FROM average_book_ratings
+...> GROUP BY year;
+
+	PARTITIONING
+CREATE VIEW 2022 AS
+...> SELECT id, title FROM books
+...> WHERE year = 2022;
+SELECT * FROM 2022;
+
+	SECURING
+SELECT id, origin, destination, Anonymous AS rider
+...> FROM rides;
+
+CREATE VIEW analysis AS
+...> SELECT id, origin, destination, Anonymous AS rider
+...> FROM riders;
+
+	TRIGGERS WITH VIEWS
+ALTER TABLE collections ADD COLUMN deleted INTEGER DEFAULT 0;
+
+UPDATE collections SET deleted = 1
+...> WHERE title = 'your content need to update'; ---> SOFT DELETE
+
+CREATE VIEW current_collections AS
+...> SELECT id, title, accession_number, acquired
+...> FROM collections WHERE deleted = 0;
+
+CREATE TRIGGER deleted
+...> INSTEAD OF DELETE ON current_collections
+...> FOR EACH ROW
+...> BEGIN
+...> 	UPDATE collections SET deleted = 1
+...> 	WHERE id = OLD.id;
+...> END;
+
+CREATE TRIGGER insert_when_exists
+...> INSTEAD OF INSERT ON current_collections
+...> FOR EACH ROW
+...> WHEN NEW.accession_number IN (
+...> 	SELECT accession_number FROM collections
+...> )
+...> BEGIN
+...> 	UPDATE collections SET deleted = 0
+...> 	WHERE accession_number = NEW.accession_number;
+...> END;
+
+
+
+
 
 
 
