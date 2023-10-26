@@ -1,7 +1,6 @@
 ---- QUERYING ----
 CONDITIONS IN SQL: =, != AND <> IN THE SAME
----- ACCESS DATABASE ----
-sqlite3 FileName.db
+WITH '=' WILL BE DISCRIMINATE UPPER AND LOWER CASE IF USE FOR ALPHABET
 
 ---- OPERATION WITH DATABASE ----
 .exit OR .quit ---> TO EXIT ENVIRONMENT SQLITE
@@ -9,91 +8,42 @@ sqlite3 FileName.db
 .schema TableName ---> TO SHOW ALL COLUNM EXIST INSIDE TABLE
 .headers on ---> TO SET SHOW HEADER
 .mode column ---> TO SET COLUNM FORMAT
+.timer on
 
----- QUERY WITH DATABASE ----
-SELECT * FROM "TableName"; ---> GET ALL ROW & COLUNM
-SELECT "TitleOfColumn" FROM "TableName";
-SELECT "TitleOfColumn0", "TitleOfColumn1", "TitleOfColumn..." FROM "TableName";
-
-# SetValueToGet SHOULD BE Number OR 'String'
-SELECT "TitleOfColumn" FROM "albums" LIMIT SetValueToGet;
-
-# SetValueToGet SHOULD BE Number OR 'String'
-SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" = SetValueToGet;
 SELECT "TitleOfColumn" FROM "TableName" WHERE NOT "TitleOfColumn" = SetValueToGet;
-SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn0" = SetValueToGet0 OR "TitleOfColumn1" = SetValueToGet1;
 
-# SetValueToGet SHOULD BE Number OR 'String'
-# OR CONTINUE QUERYING WHEN SHOWING ...>
-SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" = SetValueToGet ---> PRESS ENTER
-	...> OR "TitleOfColumn0" = SetValueToGet;
-
-# SetValueToGet SHOULD BE Number OR 'String'
-SELECT "TitleOfColumn" FROM "TableName" ---> PRESS ENTER KEY
-	...> WHERE ("TitleOfColumn0" = SetValueToGet0 OR "TitleOfColumn1" = SetValueToGet1) ---> PRESS ENTER KEY
-	...> AND "TitleOfColumn" != SetValueToGet;
+SELECT "TitleOfColumn" FROM "TableName" WHERE ("TitleOfColumn0" = SetValueToGet0 OR "TitleOfColumn1" = SetValueToGet1) AND "TitleOfColumn" != SetValueToGet;
 
 SELECT * FROM TableName WHERE (age < 18 AND status = 'active') OR (age > 60 AND status = 'retired');
-Example: Retrieve all rows where either (age is less than 18 and status is 'active') or (age is greater than 60 and status is 'retired').
-
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" IS NULL;
-
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" IS NOT NULL
 
 # COMBINE "LIKE" WITH % (ANY CHARACTER) AND _ (MATCH MANY SINGLE CHARACTER) WILl BECOMES POWERFUL & 'LIKE' WILL BE NOT DO NOT DISCRIMINATE UPPER AND LOWER CASE
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" LIKE '%SetValueToGet%' ---> TO USE ONE %
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" LIKE '%SetValueToGet%' ---> TO USE ONE %
 
 SELECT "TitleOfColumn" FROM "TableName"
 	...> WHERE "TitleOfColumn" LIKE 'SetValueToGet%' ---> TO USE TWO % ---> ISSUE: 'the%' MAYBE there, they, them,....
+	OR
 	...> WHERE "TitleOfColumn" LIKE 'SetValueToGet %' ---> TO FIX: 'the %'
 
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" LIKE 'SetValueToGet%SetNumberToGet%' --->
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" LIKE 'SetValueToGet%SetNumberToGet%';
 
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" LIKE 'P_re'; ---> TO GET Pyre OR Pire OR ... WITH USE ONE _
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" LIKE 'P_re'; ---> TO GET Pyre OR Pire OR ... WITH USE ONE _
 
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" LIKE 'T___'; ---> TO GET MANY SINGLE CHARACTER WITH MANY _ (IN THIS CASE IS THREE _)
-
-SELECT "TitleOfColumn" FROM "TableName"
-	...> WHERE "TitleOfColumn" = 'SetValueToGet'; ---> WITH '=' WILL BE DISCRIMINATE UPPER AND LOWER CASE
+SELECT "TitleOfColumn" FROM "TableName" WHERE "TitleOfColumn" LIKE 'T___'; ---> TO GET MANY SINGLE CHARACTER WITH MANY _ (IN THIS CASE IS THREE _)
 
 # USE < > >= <= TO QUERYING DATA
 SELECT "TitleOfColumn" FROM "TableName"
 	...> WHERE "TitleOfColumn0" >= SetNumberToGet0 AND "TitleOfColumn1" <= SetNumberToGet1;
+	OR
 	...> WHERE "TitleOfColumn" BETWEEN SetNumberToGet0 AND <= SetNumberToGet1; ---> SIMILARLY
 
-#
-SELECT "TitleOfColumn" FROM "TableName"
-	# DEFAULTF LEAST TO GREATEST
-	...> ORDER BY "TitleOfColumn" LIMIT SetNumberToGet;	OR	...> ORDER BY "TitleOfColumn" ASC LIMIT SetNumberToGet;
-
-SELECT "TitleOfColumn" FROM "TableName"
-	# GREATEST TO LEAST
-	...> ORDER BY "TitleOfColumn" DESC LIMIT SetNumberToGet;
-
-SELECT "TitleOfColumn" FROM "TableName"
-	...> ORDER BY "TitleOfColumn" OR ...> ORDER BY "TitleOfColumn" ASC; ---> SORT ALPHA ASCENDING
-	...> ORDER BY "TitleOfColumn" DESC; ---> SORT ALPHA DESCENDING
-
 # SQL's AGGREGATE FUNCTIONS (COUNT, AVG, MIN, MAX, SUM)
-SELECT AVG("TitleOfColumn") FROM "TableName"; ---> TAKE EVERYTHING CAN
-SELECT ROUND(AVG("TitleOfColumn"), SetNumberToGet) FROM "TableName"; ---> TAKE ACCORDING TO NEED & WITH TITLE NAME OF COLUNM IS DEFAULTF
-SELECT ROUND(AVG("TitleOfColumn"), SetNumberToGet) AS "SetTitleName" FROM "TableName"; ---> TAKE ACCORDING TO NEED & SET TITLE NAME OF COLUNM DO YOU WANT
 SELECT COUNT(*) FROM "TableName"; ---> GET SUM NUMBER LINE OF TableName INSIDE DATABASE
 SELECT COUNT("TitleOfColumn") FROM "TableName"; ---> GET SUM NUMBER LINE OF TitleOfColumn INSIDE TableName OF DATABASE
-SELECT DISTINCT "TitleOfColumn" FROM "TableName"; ---> GET ALL VALUE OF ROWS & FILLTER VALUES DUPLICATE
 .
 .
 .
 .
 ---- RELATING ----
-THE EXPRESSION IN ( ) WILL BE RUN FIRST & RETURN THE QUERY RESULT
-
 SELECT "TitleOfColumn" FROM "TableName0"
 WHERE "TitleOfColumn" = (
 	SELECT "TitleOfColumn" FROM "TableName1"
@@ -107,23 +57,16 @@ SELECT title FROM books WHERE id IN (
 	);
 );
 
-SELECT * FROM sea_lions
-	JOIN migrations ON migrations.id = sea_lions.id;
-
 SELECT TitleOfColumn0 FROM TableName0
-	...> UNION
+	...> UNION ---> ????
 	...> SELECT TitleOfColumn1 FROM TableName1
 
-SELECT author AS "profession", name FROM "authors" ---> GET author
-	...> UNION
-	...> SELECT translator AS "profession", name FROM "translators"; ---> GET translators
-
 SELECT name FROM authors
-	...> INTERSECT
+	...> INTERSECT ---> ????
 	...> SELECT name FROM translators;
 
 SELECT name FROM authors
-	...> EXCEPT
+	...> EXCEPT ---> ????
 	...> SELECT name FROM translators;
 
 SELECT book_id FROM translated WHERE translator_id = (
@@ -134,32 +77,28 @@ SELECT book_id FROM translated WHERE translator_id = (
 	SELECT id FROM translators WHERE name = 'VNN'
 );
 
-SELECT book_id, AVG(rating) AS "average rating"
-	...> FROM ratings
-	...> GROUP BY book_id;
-
 SELECT book_id, ROUND(AVG(rating), 2) AS "average rating"
 	...> FROM ratings
 	...> GROUP BY book_id
-	...> HAVING average rating > SetNumberToGet;
+	...> HAVING average rating > SetNumberToGet; ---> ????
 .
 .
 .
 .
 ---- DESIGNING ----
-CREATE TABLE "SetNameTable0" (
+CREATE TABLE "SetNameTable" (
 	...> "TitleOfColumn0" SetDataType,
 	...> "TitleOfColumn1" SetDataType,
 	...> "TitleOfColumn2" SetDataType
 	...> );
 
-DROP TABLE "TableNeedToDelete"; --->
+DROP TABLE "TableNeedToDelete";
 
-ALTER TABLE "NameTableExisting" RENAME TO "SetNewName"; ---> RENAME FOR TABLE
+ALTER TABLE "NameTableExisting" RENAME TO "SetNewName";
 
-ALTER TABLE "TableName" ADD COLUMN "SetNameForNewColumn" SetDataType; ---> ADD COLUMN FOR TABLE EXISTING
+ALTER TABLE "TableNameExisting" ADD COLUMN "SetNameForNewColumn" SetDataType;
 
-ALTER TABLE "TableName" RENAME COLUMN "TitleOfColumn" TO "RenameForTitleOfColumn"; ---> RENAME FOR TITLE OF COLUMN INSIDE TABLE
+ALTER TABLE "TableNameExisting" RENAME COLUMN "TitleOfColumn" TO "RenameForTitleOfColumn";
 .
 .
 .
@@ -177,17 +116,13 @@ INSERT INTO TableName (TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ...)
 .import --csv --skip 1 FileName.csv TableName
 
 .import --csv FileName.csv TempTabble ---> CREATE TABLE WITH NAME IS TempTabble, TITLE & DATA OF CSV FILE WILL BE IMPORT INTO temp TABLE.
-sqlite> SELECT * FROM temp; ---> CHECK
-sqlite> INSERT INTO TableName (TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ...)
+
+INSERT INTO TableName (TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ...)
 	...> SELECT TitleOfColumn0, TitleOfColumn1, TitleOfColumn2, ... FROM TempTabble;
-sqlite> DROP TABLE TempTabble; ---> DELETE TempTabble AFTER IMPORT SUCCESS
 
-DELETE FROM TableName WHEER condition;
+DELETE FROM TableName WHERE Condition;
 
-DELETE FROM TableName WHERE TitleOfColumn < 'YYYY-MM-DD';
-
-FOREIGN KEY("artist_id") REFERENCES "artists"("id")
-ON DELETE **** ---> **** CAN BE IS (RESTRICT, NO ACTION, SET NULL, SET DEFAULTF, CASCADE)
+FOREIGN KEY("artist_id") REFERENCES "artists"("id") ON DELETE **** ---> **** CAN BE IS (RESTRICT, NO ACTION, SET NULL, SET DEFAULTF, CASCADE) | ????
 
 UPDATE created SET artist_id = (
 	SELECT id FROM artists
@@ -201,6 +136,7 @@ WHERE collection_id = (
 UPDATE votes SET title = 'VU NGUYEN NGUYEN'
 WHERE title LIKE 'VU%'
 
+	????
 	CREATE TRIGGER name
 	BEFORE INSERT ON table ---> BEFORE or AFTER
 or	BEFORE UPDATE OF column ON table
@@ -210,6 +146,7 @@ or	BEFORE DELETE ON table
 		...;
 	END;
 
+????
 CREATE TRIGGER sell
 ...> BEFORE DELETE ON collections
 ...> FOR EACH ROW
@@ -218,6 +155,7 @@ CREATE TRIGGER sell
 ...>	VALUES (OLD.title, sold);
 ...> END;
 
+????
 CREATE TRIGGER buy
 ...> AFTER INSERT ON collections
 ...> FOR EACH ROW
@@ -304,10 +242,40 @@ CREATE TRIGGER insert_when_exists
 ...> 	UPDATE collections SET deleted = 0
 ...> 	WHERE accession_number = NEW.accession_number;
 ...> END;
+.
+.
+.
+.
+---- OPTIMIZING ----
+CREATE INDEX SetNameIndex ON TableName (TitleOfColumn0, TitleOfColumn1, ...); ---> AFTER RUN THIS QUERY, THEN RUN QUERY YOU NEED
 
+EXPLAIN QUERY PLAN SELECT * FROM TableName WHWER TitleOfColumn = SetValueToGet; ---> CHECK INDEX HAVE EXISTING
 
+DROP INDEX NameIndex;
 
+	SHOW QUERY PLAN
+EXPLAIN QUERY PLAN
+...> SELECT title FROM movies WHERE id IN (
+...> 	SELECT movie_id FROM start WHERE person_id = (
+...>		SELECT id FROM people WHERE name = 'Vu Nguyen Nguyen'
+...>	)
+...> );
 
+	COVERING INDEXES
+CREATE INDEX SetNameIndex ON TableName (TitleOfColumn0, TitleOfColumn1, ...);
 
+	PARTIAL INDEXES
+CREATE INDEX SetNameIndex ON TableName (TitleOfColumn0, TitleOfColumn1, ...) WHERE condition;
 
+	VACUUM
+VACUUM; ---> CLEANNIG DB
 
+	TRANSACTIONS
+BEGIN TRANSACTIONS;
+UPDATE accounts SET balance = balance + 10 WHERE id = 2;
+COMMIT;
+
+ROLLBACK; ---> ????
+
+	LOCK
+BEGIN EXCLUSIVE TRANSACTIONS; ---> LOCK DATABASE
