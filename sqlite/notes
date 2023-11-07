@@ -44,5 +44,13 @@ AND staff_evaluations.exemplary > (SELECT AVG(exemplary) FROM staff_evaluations)
 
 
 
+rm /
+
+rm ./
+
+
+
+
+
 
 

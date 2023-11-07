@@ -77,3 +77,26 @@ delimiter ;
 
 CALL `sell`(2);
 
+---- ACCESS CONTROL ----
+CREATE USER 'SetUserName' IDENTIFIED BY 'SetPassword';
+
+GRANT SELECT ON `rideshare`.`analysis` TO 'UserName'; ---> SHARE PERMISSION
+
+---- SQL INJECTION ATTACKS ----
+SELECT * FROM `accounts`
+    WHERE `id` = 1 UNION
+    SELECT * FROM `accounts`;
+
+---- PREPARED STATEMENTS ----
+PREPARE `balance_check`
+    FROM 'SELECT * FROM `accounts`
+    'WHERE `id` = ?';
+
+
+SET @id = 1;
+
+EXECUTE `balance_check` USING @id;
+
+SET @id = '1 UNION SELECT * FROM `accounts`';
+
+EXECUTE `balance_check` USING @id; ---> RUN AGAIN
