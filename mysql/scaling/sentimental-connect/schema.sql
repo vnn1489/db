@@ -24,9 +24,6 @@ CREATE TABLE companies (
     PRIMARY KEY(`id`)
 );
 
-
-
-
 CREATE TABLE user_and_user (
     id INT AUTO_INCREMENT,
     user_1 INT,
@@ -39,8 +36,8 @@ CREATE TABLE user_and_user (
 CREATE TABLE school_and_user (
     id INT AUTO_INCREMENT,
     link TEXT,
-    attend DATE,
-    graduated DATE,
+    attend DATETIME,
+    graduated DATETIME,
     degree TEXT,
     user_id INT,
     school_id INT,
