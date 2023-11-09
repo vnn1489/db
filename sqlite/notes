@@ -87,7 +87,7 @@ AND (
 	word LIKE 'ơ% ơ%'
 );
 	
---	word LIKE 'ch% tr%'
---	word LIKE 'tr% ch%'	OR
+word LIKE 'ch% tr%'
+word LIKE 'tr% ch%'	OR
 
 SELECT * FROM "translation" WHERE word LIKE 'tr% ch%' OR word LIKE 'ch% tr%';
