@@ -18,7 +18,6 @@ JOIN "english_meaning" ON "vietnamese_phrase"."id" = "english_meaning"."vietname
 SELECT * FROM "english_meaning_of_vietnamese_phrase"
 WHERE "vietnamese_phrase" LIKE 'ng% ng%';
 
--- 
 
 
 
@@ -73,5 +72,51 @@ AND (
 
 
 
+
+
+SELECT "word", "meaning" FROM "translation"
+WHERE LENGTH("word") - LENGTH(REPLACE("word", ' ', '')) = 1
+AND (
+	"word" LIKE 'q% q%' OR
+	"word" LIKE 'r% r%' OR
+	"word" LIKE 't% t%' OR
+	"word" LIKE 'p% p%' OR
+	"word" LIKE 's% s%' OR
+	"word" LIKE 'd% d%' OR
+	"word" LIKE 'đ% đ%' OR
+	"word" LIKE 'g% g%' OR
+	"word" LIKE 'h% h%' OR
+	"word" LIKE 'k% k%' OR
+	"word" LIKE 'l% %l' OR
+	"word" LIKE 'x% x%' OR
+	"word" LIKE 'c% c%' OR
+	"word" LIKE 'v% v%' OR
+	"word" LIKE 'b% b%' OR
+	"word" LIKE 'n% n%' OR
+	"word" LIKE 'm% m%' OR
+	"word" LIKE 'gi% gi%' OR
+	"word" LIKE 'kh% %kh' OR
+	"word" LIKE 'ng% ng%' OR
+	"word" LIKE 'nh% nh%' OR
+	"word" LIKE 'ph% ph%' OR
+	"word" LIKE 'th% th%' OR
+	"word" LIKE 'tr% tr%' OR
+    "word" LIKE 'tr% ch%' OR
+	"word" LIKE 'ch% ch%' OR
+    "word" LIKE 'ch% tr%'
+) OR (
+	"word" LIKE 'a% a%' OR
+	"word" LIKE 'â% â%' OR
+	"word" LIKE 'ă% ă%' OR
+	"word" LIKE 'e% e%' OR
+	"word" LIKE 'ê% ê%' OR
+	"word" LIKE 'y% y%' OR
+	"word" LIKE 'u% u%' OR
+	"word" LIKE 'ư% ư%' OR
+	"word" LIKE 'i% i%' OR
+	"word" LIKE 'o% o%' OR
+	"word" LIKE 'ô% ô%' OR
+	"word" LIKE 'ơ% ơ%'
+);
 
 

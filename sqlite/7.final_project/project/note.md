@@ -1,0 +1,2 @@
+- how to get all vietnamese phrase (only with two words) from db & put into new db?
+- how to get all english words is meaning of vietnamese phrase?
