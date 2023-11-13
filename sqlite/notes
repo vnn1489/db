@@ -41,53 +41,93 @@ WHERE expenditures.per_pupil_expenditure > (SELECT AVG(per_pupil_expenditure) FR
 AND staff_evaluations.exemplary > (SELECT AVG(exemplary) FROM staff_evaluations);
 
 
-
-a - â - ă, e - ê, y, u - ư, i, o - ô - ơ
-
 SELECT * FROM translation
-WHERE LENGTH(word) - LENGTH(REPLACE(word, ' ', '')) = 1
-AND (
-	word LIKE 'q% q%' OR
-	word LIKE 'r% r%' OR
-	word LIKE 't% t%' OR
-	word LIKE 'p% p%' OR
-	word LIKE 's% s%' OR
-	word LIKE 'd% d%' OR
-	word LIKE 'đ% đ%' OR
-	word LIKE 'g% g%' OR
-	word LIKE 'h% h%' OR
-	word LIKE 'k% k%' OR
-	word LIKE 'l% %l' OR
-	word LIKE 'x% x%' OR
-	word LIKE 'c% c%' OR
-	word LIKE 'v% v%' OR
-	word LIKE 'b% b%' OR
-	word LIKE 'n% n%' OR
-	word LIKE 'm% m%' OR
-	word LIKE 'gi% gi%' OR
-	word LIKE 'kh% %kh' OR
-	word LIKE 'ng% ng%' OR
-	word LIKE 'nh% nh%' OR
-	word LIKE 'ph% ph%' OR
-	word LIKE 'th% th%' OR
-	word LIKE 'tr% tr%'	OR
-	word LIKE 'ch% ch%'
-) OR (
-	word LIKE 'a% a%' OR
-	word LIKE 'â% â%' OR
-	word LIKE 'ă% ă%' OR
-	word LIKE 'e% e%' OR
-	word LIKE 'ê% ê%' OR
-	word LIKE 'y% y%' OR
-	word LIKE 'u% u%' OR
-	word LIKE 'ư% ư%' OR
-	word LIKE 'i% i%' OR
-	word LIKE 'o% o%' OR
-	word LIKE 'ô% ô%' OR
-	word LIKE 'ơ% ơ%'
+WHERE (
+	phrase_vietnamese LIKE 'q% q%' OR
+	phrase_vietnamese LIKE 'r% r%' OR
+	phrase_vietnamese LIKE 't% t%' OR
+	phrase_vietnamese LIKE 'p% p%' OR
+	phrase_vietnamese LIKE 's% s%' OR
+	phrase_vietnamese LIKE 'd% d%' OR
+	phrase_vietnamese LIKE 'đ% đ%' OR
+	phrase_vietnamese LIKE 'g% g%' OR
+	phrase_vietnamese LIKE 'h% h%' OR
+	phrase_vietnamese LIKE 'k% k%' OR
+	phrase_vietnamese LIKE 'l% %l' OR
+	phrase_vietnamese LIKE 'x% x%' OR
+	phrase_vietnamese LIKE 'c% c%' OR
+	phrase_vietnamese LIKE 'v% v%' OR
+	phrase_vietnamese LIKE 'b% b%' OR
+	phrase_vietnamese LIKE 'n% n%' OR
+	phrase_vietnamese LIKE 'm% m%' OR
+	phrase_vietnamese LIKE 'gi% gi%' OR
+	phrase_vietnamese LIKE 'kh% %kh' OR
+	phrase_vietnamese LIKE 'ng% ng%' OR
+	phrase_vietnamese LIKE 'nh% nh%' OR
+	phrase_vietnamese LIKE 'ph% ph%' OR
+	phrase_vietnamese LIKE 'th% th%' OR
+	phrase_vietnamese LIKE 'tr% tr%' OR
+	phrase_vietnamese LIKE 'tr% ch%' OR
+	phrase_vietnamese LIKE 'ch% ch%' OR
+	phrase_vietnamese LIKE 'ch% tr%' OR
+	phrase_vietnamese LIKE 'a% a%' OR
+	phrase_vietnamese LIKE 'â% â%' OR
+	phrase_vietnamese LIKE 'ă% ă%' OR
+	phrase_vietnamese LIKE 'e% e%' OR
+	phrase_vietnamese LIKE 'ê% ê%' OR
+	phrase_vietnamese LIKE 'y% y%' OR
+	phrase_vietnamese LIKE 'u% u%' OR
+	phrase_vietnamese LIKE 'ư% ư%' OR
+	phrase_vietnamese LIKE 'i% i%' OR
+	phrase_vietnamese LIKE 'o% o%' OR
+	phrase_vietnamese LIKE 'ô% ô%' OR
+	phrase_vietnamese LIKE 'ơ% ơ%'
 );
-	
-word LIKE 'ch% tr%'
-word LIKE 'tr% ch%'	OR
 
-SELECT * FROM "translation" WHERE word LIKE 'tr% ch%' OR word LIKE 'ch% tr%';
+-- CASE FOR g
+SELECT * from two_words
+WHERE word LIKE 'g% g%'
+AND word NOT LIKE 'gi% gi%'
+AND word NOT LIKE 'gi% g%'
+AND word NOT LIKE 'g% gi%';
+ 
+ -- CASE FOR k
+SELECT * from two_words
+WHERE word LIKE 'k% k%'
+AND word NOT LIKE 'kh% kh%'
+AND word NOT LIKE 'kh% k%'
+AND word NOT LIKE 'k% kh%';
+
+ -- CASE FOR n
+SELECT * from two_words
+WHERE word LIKE 'n% n%'
+AND word NOT LIKE 'ng% ng%'
+AND word NOT LIKE 'ng% n%'
+AND word NOT LIKE 'n% ng%'
+AND word NOT LIKE 'nh% nh%'
+AND word NOT LIKE 'nh% n%'
+AND word NOT LIKE 'n% nh%';
+
+-- CASE FOR p
+SELECT * from two_words
+WHERE word LIKE 'p% p%'
+AND word NOT LIKE 'ph% ph%'
+AND word NOT LIKE 'ph% p%'
+AND word NOT LIKE 'p% ph%';
+
+-- CASE FOR t
+SELECT * from two_words
+WHERE word LIKE 't% t%'
+AND word NOT LIKE 'th% th%'
+AND word NOT LIKE 'th% t%'
+AND word NOT LIKE 't% th%'
+AND word NOT LIKE 'tr% tr%'
+AND word NOT LIKE 'tr% t%'
+AND word NOT LIKE 't% tr%';
+
+-- CASE FOR c
+SELECT * from two_words
+WHERE word LIKE 'c% c%'
+AND word NOT LIKE 'ch% ch%'
+AND word NOT LIKE 'ch% c%'
+AND word NOT LIKE 'c% ch%';

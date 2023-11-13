@@ -1,36 +1,24 @@
--- ANYONE'S VIETNAMESE NAME
+-- INSIDE DATABASE OF THE VIETNAMESE-ENGLISH DICTIONARY FROM THE INTERNET, IT WILL HAVE THE FOLLOWING STRUCTURE:
+--		-"translation":
+--			+ "id": INTEGER PRIMARY KEY AUTOINCREMENT,
+--			+ "word": TEXT NOT NULL,
+--			+ "translation_word": TEXT NOT NULL,
+--			+ "word_search": TEXT NOT NULL
+
+-- I CREATE NEW TABLES INSIDE VIETNAMESE-ENGLISH DICTIONARY WITH THE FOLLOWING PROPERTIES
+CREATE TABLE "just_two_words" (
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  	"vietnamese_phrase" TEXT NOT NULL,
+	"english_meaning" TEXT,
+	"vietnamese_phrase_search" TEXT
+);
+
 CREATE TABLE "vietnamese_name" (
-    "id" INTEGER,
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "first_name" TEXT NOT NULL,
     "middle_name" TEXT,
     "last_name" TEXT
 );
 
--- FROM VIETNAMESE - ENGLISH DICTIONARY, I WILL TAKE ALL 2-WORD PHRASES THAT START WITH THE FOLLOWING LETTERS
-    -- SINGLE CONSONANTS: Q, R, T, P, S, D - D, G, H, K, L, X, C, V, B, N, M
-    -- COMBINED CONSONANTS: GI, KH, NG, NH, PH, TH, TR, CH
-    -- CASES OF SPECIAL NAME STARTING WITH THESE LETTERS: A, Â, Ă, E, Ê, Y, U, Ư, I, O, Ô, Ơ.
-
-
-
-
-
-
-    
--- THE VIETNAMESE PHRASE IN THIS TABLE CONTAIN ONLY TWO WORDS
-CREATE TABLE "vietnamese_phrase" (
-    "id" INTEGER PRIMARY KEY,
-    "phrase" TEXT NOT NULL,
-    "meaning" TEXT
-);
-
--- ENGLISH MEANING OF VIETNAMESE PHRASE
-CREATE TABLE "english_meaning" (
-    "id" INTEGER,
-    "meaning" TEXT,
-    "vietnamese_phrase_id" INTEGER,
-    FOREIGN KEY("vietnamese_phrase_id") REFERENCES "vietnamese_phrase"("id")
-);
-
--- CREATE INDEX FOR phrase FROM VIEW MODE only_two_words.
-CREATE INDEX "vietnamese_phrase_indexes" ON "vietnamese_phrase"("phrase");
+-- I CREATE INDEX FOR vietnamese_phrase COLUMN OF just_two_words TABLE.
+CREATE INDEX "just_two_words_indexes" ON "just_two_words"("vietnamese_phrase");
