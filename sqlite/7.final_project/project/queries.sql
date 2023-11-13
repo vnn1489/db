@@ -1,9 +1,9 @@
--- AFTER I HAVE THE vietnamese_name TABLE CREATED FROM schema.sql FILE
+-- AFTER CREATED TABLE vietnamese_name FROM schema.sql
 -- I WILL ADD MY NAME INTO vietnamese_name TABLE. 
 INSERT INTO "vietnamese_name" ("first_name")
 VALUES ('Nguyen');
 
--- AFTER I HAVE THE just_two_words TABLE CREATED FROM schema.sql FILE
+-- AFTER CREATED TABLE just_two_words FROM schema.sql
 -- I WILL COPY THE DATA THAT I NEED TO GET FROM THE translation TABLE.
 INSERT INTO "just_two_words"
 SELECT "id" ,"word", "translation_word", "word_search"
@@ -36,21 +36,69 @@ AND (
 	"word" LIKE 'tr% tr%' OR
 	"word" LIKE 'ch% ch%' OR
 	"word" LIKE 'a% a%' OR
+	"word" LIKE 'á% á%' OR
+	"word" LIKE 'ạ% ạ%' OR
+	"word" LIKE 'ã% ã%' OR
+	"word" LIKE 'ả% ả%' OR
 	"word" LIKE 'â% â%' OR
+	"word" LIKE 'ấ% ấ%' OR
+	"word" LIKE 'ậ% ậ%' OR
+	"word" LIKE 'ẫ% ẫ%' OR
+	"word" LIKE 'ẩ% ẩ%' OR
 	"word" LIKE 'ă% ă%' OR
+	"word" LIKE 'ắ% ắ%' OR
+	"word" LIKE 'ặ% ặ%' OR
+	"word" LIKE 'ẵ% ẵ%' OR
+	"word" LIKE 'ẳ% ẳ%' OR
 	"word" LIKE 'e% e%' OR
+	"word" LIKE 'é% é%' OR
+	"word" LIKE 'ẹ% ẹ%' OR
+	"word" LIKE 'ẽ% ẽ%' OR
+	"word" LIKE 'ẻ% ẻ%' OR
 	"word" LIKE 'ê% ê%' OR
+	"word" LIKE 'ế% ế%' OR
+	"word" LIKE 'ệ% ệ%' OR
+	"word" LIKE 'ễ% ễ%' OR
+	"word" LIKE 'ể% ể%' OR
 	"word" LIKE 'y% y%' OR
+	"word" LIKE 'ý% ý%' OR
+	"word" LIKE 'ỵ% ỵ%' OR
+	"word" LIKE 'ỹ% ỹ%' OR
+	"word" LIKE 'ỷ% ỷ%' OR
 	"word" LIKE 'u% u%' OR
+	"word" LIKE 'ú% ú%' OR
+	"word" LIKE 'ụ% ụ%' OR
+	"word" LIKE 'ũ% ũ%' OR
+	"word" LIKE 'ủ% ủ%' OR
 	"word" LIKE 'ư% ư%' OR
+	"word" LIKE 'ứ% ứ%' OR
+	"word" LIKE 'ự% ự%' OR
+	"word" LIKE 'ữ% ữ%' OR
+	"word" LIKE 'ử% ử%' OR
 	"word" LIKE 'i% i%' OR
+	"word" LIKE 'í% í%' OR
+	"word" LIKE 'ị% ị%' OR
+	"word" LIKE 'ĩ% ĩ%' OR
+	"word" LIKE 'ỉ% ỉ%' OR
 	"word" LIKE 'o% o%' OR
+	"word" LIKE 'ó% ó%' OR
+	"word" LIKE 'ọ% ọ%' OR
+	"word" LIKE 'õ% õ%' OR
+	"word" LIKE 'ỏ% ỏ%' OR
 	"word" LIKE 'ô% ô%' OR
-	"word" LIKE 'ơ% ơ%'
+	"word" LIKE 'ố% ố%' OR
+	"word" LIKE 'ộ% ộ%' OR
+	"word" LIKE 'ỗ% ỗ%' OR
+	"word" LIKE 'ổ% ổ%' OR
+	"word" LIKE 'ơ% ơ%' OR
+	"word" LIKE 'ớ% ớ%' OR
+	"word" LIKE 'ợ% ợ%' OR
+	"word" LIKE 'ỡ% ỡ%' OR
+	"word" LIKE 'ở% ở%'
 );
 
--- AFTER THERE IS DATA IN just_two_words TABLE.
--- I WILL QUERY ALL THE PHRASES WHERE THE WORDS BEGIN WITH 'NG'.
+-- AFTER THERE ARE DATA IN just_two_words TABLE.
+-- I WILL QUERY ALL THE VIETNAMESE PHRASE WHERE THE WORDS BEGIN WITH 'NG'.
 -- WHY 'NG'? BECAUSE IT IS THE CONSONANT COMBINED IN MY NAME (Nguyen).
 SELECT * FROM "just_two_words"
 WHERE "vietnamese_phrase"
@@ -136,10 +184,9 @@ UPDATE "just_two_words"
 SET "english_meaning" = "stupid"
 WHERE "vietnamese_phrase" LIKE "ngẩn ngơ";
 
--- CREATE VIEW FOR combined_consonants.
-CREATE VIEW "combined_consonants" AS
-SELECT *
-FROM "just_two_words"
+-- CREATE VIEW FOR begin_with_combined_consonants.
+CREATE VIEW "begin_with_combined_consonants" AS
+SELECT * FROM "just_two_words"
 WHERE
 	"vietnamese_phrase" LIKE 'gi% gi%' OR
 	"vietnamese_phrase" LIKE 'kh% kh%' OR
@@ -150,19 +197,24 @@ WHERE
 	"vietnamese_phrase" LIKE 'tr% tr%' OR
 	"vietnamese_phrase" LIKE 'ch% ch%';
 
---  CREATE VIEW FOR begin_with_vowels
-CREATE VIEW "begin_with_vowels" AS
+--  CREATE VIEW FOR begin_with_consonant.
+CREATE VIEW "begin_with_consonant" AS
 SELECT * FROM "just_two_words"
 WHERE
-	"vietnamese_phrase" LIKE 'a% a%' OR
-	"vietnamese_phrase" LIKE 'â% â%' OR
-	"vietnamese_phrase" LIKE 'ă% ă%' OR
-	"vietnamese_phrase" LIKE 'e% e%' OR
-	"vietnamese_phrase" LIKE 'ê% ê%' OR
-	"vietnamese_phrase" LIKE 'y% y%' OR
-	"vietnamese_phrase" LIKE 'u% u%' OR
-	"vietnamese_phrase" LIKE 'ư% ư%' OR
-	"vietnamese_phrase" LIKE 'i% i%' OR
-	"vietnamese_phrase" LIKE 'o% o%' OR
-	"vietnamese_phrase" LIKE 'ô% ô%' OR
-	"vietnamese_phrase" LIKE 'ơ% ơ%';
+	"vietnamese_phrase" LIKE 'q% q%' OR
+	"vietnamese_phrase" LIKE 'r% r%' OR
+	"vietnamese_phrase" LIKE 't% t%' OR
+	"vietnamese_phrase" LIKE 'p% p%' OR
+	"vietnamese_phrase" LIKE 's% s%' OR
+	"vietnamese_phrase" LIKE 'd% d%' OR
+	"vietnamese_phrase" LIKE 'đ% đ%' OR
+	"vietnamese_phrase" LIKE 'g% g%' OR
+	"vietnamese_phrase" LIKE 'h% h%' OR
+	"vietnamese_phrase" LIKE 'k% k%' OR
+	"vietnamese_phrase" LIKE 'l% %l' OR
+	"vietnamese_phrase" LIKE 'x% x%' OR
+	"vietnamese_phrase" LIKE 'c% c%' OR
+	"vietnamese_phrase" LIKE 'v% v%' OR
+	"vietnamese_phrase" LIKE 'b% b%' OR
+	"vietnamese_phrase" LIKE 'n% n%' OR
+	"vietnamese_phrase" LIKE 'm% m%';
