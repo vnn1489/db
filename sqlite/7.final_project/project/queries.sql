@@ -20,7 +20,7 @@ AND (
 	"word" LIKE 'g% g%' OR
 	"word" LIKE 'h% h%' OR
 	"word" LIKE 'k% k%' OR
-	"word" LIKE 'l% %l' OR
+	"word" LIKE 'l% l%' OR
 	"word" LIKE 'x% x%' OR
 	"word" LIKE 'c% c%' OR
 	"word" LIKE 'v% v%' OR
@@ -28,7 +28,7 @@ AND (
 	"word" LIKE 'n% n%' OR
 	"word" LIKE 'm% m%' OR
 	"word" LIKE 'gi% gi%' OR
-	"word" LIKE 'kh% %kh' OR
+	"word" LIKE 'kh% kh%' OR
 	"word" LIKE 'ng% ng%' OR
 	"word" LIKE 'nh% nh%' OR
 	"word" LIKE 'ph% ph%' OR
@@ -196,25 +196,3 @@ WHERE
 	"vietnamese_phrase" LIKE 'th% th%' OR
 	"vietnamese_phrase" LIKE 'tr% tr%' OR
 	"vietnamese_phrase" LIKE 'ch% ch%';
-
---  CREATE VIEW FOR begin_with_consonant.
-CREATE VIEW "begin_with_consonant" AS
-SELECT * FROM "just_two_words"
-WHERE
-	"vietnamese_phrase" LIKE 'q% q%' OR
-	"vietnamese_phrase" LIKE 'r% r%' OR
-	"vietnamese_phrase" LIKE 't% t%' OR
-	"vietnamese_phrase" LIKE 'p% p%' OR
-	"vietnamese_phrase" LIKE 's% s%' OR
-	"vietnamese_phrase" LIKE 'd% d%' OR
-	"vietnamese_phrase" LIKE 'đ% đ%' OR
-	"vietnamese_phrase" LIKE 'g% g%' OR
-	"vietnamese_phrase" LIKE 'h% h%' OR
-	"vietnamese_phrase" LIKE 'k% k%' OR
-	"vietnamese_phrase" LIKE 'l% %l' OR
-	"vietnamese_phrase" LIKE 'x% x%' OR
-	"vietnamese_phrase" LIKE 'c% c%' OR
-	"vietnamese_phrase" LIKE 'v% v%' OR
-	"vietnamese_phrase" LIKE 'b% b%' OR
-	"vietnamese_phrase" LIKE 'n% n%' OR
-	"vietnamese_phrase" LIKE 'm% m%';
