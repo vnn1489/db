@@ -165,16 +165,6 @@ AND "vietnamese_name"."first_name" IS 'Nguyen';
         AND "vietnamese_phrase" NOT LIKE 'ch% c%'
         AND "vietnamese_phrase" NOT LIKE 'c% ch%';
 
--- ????
-SELECT * FROM "just_two_words"
-WHERE (
-	SELECT "first_name"
-	FROM "vietnamese_name"
-	WHERE "first_name" LIKE 'Nguyen'; 
-)
-...
-;
-
 -- ADD NEW VIETNAMESE PHRASE INTO DATABASE
 INSERT INTO "just_two_words" ("vietnamese_phrase", "vietnamese_phrase_search")
 VALUES ('ngẩn ngơ', 'ngan ngo');
