@@ -1,7 +1,7 @@
 -- AFTER CREATED TABLE vietnamese_name FROM schema.sql
 -- I WILL ADD MY NAME INTO vietnamese_name TABLE. 
 INSERT INTO "vietnamese_name" ("first_name")
-VALUES ('Nguyen');
+VALUES ('Nguyen'), ("Gam");
 
 -- AFTER CREATED TABLE just_two_words FROM schema.sql
 -- I WILL COPY THE DATA THAT I NEED TO GET FROM THE translation TABLE.
@@ -105,11 +105,15 @@ WHERE "vietnamese_phrase"
 LIKE 'ng% ng%';
 
 -- COMBINE NAME WITH VIETNAMESE PHRASE.
-SELECT "vietnamese_name"."first_name"  || ' ' || "just_two_words"."vietnamese_phrase"
-AS "combine_name_with_vietnamese_phrase"
-FROM "vietnamese_name", "just_two_words"
+INSERT INTO "combine_name_with_phrase" ("name_id", "phrase_id", "text_combine")
+SELECT
+    "vietnamese_name"."id",
+    "just_two_words"."id",
+    "vietnamese_name"."first_name" || ' ' || "just_two_words"."vietnamese_phrase"
+FROM "vietnamese_name"
+CROSS JOIN "just_two_words"
 WHERE "just_two_words"."vietnamese_phrase" LIKE 'ng% ng%'
-AND "vietnamese_name"."first_name" IS 'Nguyen';
+AND "vietnamese_name"."first_name" = 'Nguyen';
 
 -- FOR TWO-WORD PHRASES STARTING WITH g, k, n, p, t, c.
 -- I WILL HAVE SPECIAL QUERY FOR THEM
@@ -117,53 +121,56 @@ AND "vietnamese_name"."first_name" IS 'Nguyen';
 -- THE RESULTS WILL INCLUDE CASES OF gi, kh, ng, nh, ph, th, tr, ch
 -- AND IN VIETNAMESE CONTEXT: gi, kh, ng, nh, ph, th, tr, ch ALSO ARE CONSONANTS ---> CONSONANT COMBINED.
 -- FOR THAT REASON, I WANT TO COMPLETELY SEPARATE THEM
-        -- CASE FOR g LETTER
-        SELECT * from "just_two_words"
-        WHERE "vietnamese_phrase" LIKE 'g% g%'
-        AND "vietnamese_phrase" NOT LIKE 'gi% gi%'
-        AND "vietnamese_phrase" NOT LIKE 'gi% g%'
-        AND "vietnamese_phrase" NOT LIKE 'g% gi%';
+-- BELLOW IS EXAMPLE FOR CASE g LETTER
+INSERT INTO "combine_name_with_phrase" ("name_id", "phrase_id", "text_combine")
+SELECT
+    "vietnamese_name"."id",
+    "just_two_words"."id",
+    "vietnamese_name"."first_name" || ' ' || "just_two_words"."vietnamese_phrase"
+FROM "vietnamese_name"
+CROSS JOIN "just_two_words"
+WHERE "just_two_words"."vietnamese_phrase" LIKE 'g% g%' -- OPTION
+AND "just_two_words"."vietnamese_phrase" NOT LIKE 'gi% gi%' -- OPTION
+AND "just_two_words"."vietnamese_phrase" NOT LIKE 'gi% g%' -- OPTION
+AND "just_two_words"."vietnamese_phrase" NOT LIKE 'g% gi%' -- OPTION
+AND "vietnamese_name"."first_name" = 'Gam';
 
-        -- CASE FOR k LETTER
-        SELECT * from "just_two_words"
-        WHERE "vietnamese_phrase" LIKE 'k% k%'
-        AND "vietnamese_phrase" NOT LIKE 'kh% kh%'
-        AND "vietnamese_phrase" NOT LIKE 'kh% k%'
-        AND "vietnamese_phrase" NOT LIKE 'k% kh%';
-
-        -- CASE FOR n LETTER
-        SELECT * from "just_two_words"
-        WHERE "vietnamese_phrase" LIKE 'n% n%'
-        AND "vietnamese_phrase" NOT LIKE 'ng% ng%'
-        AND "vietnamese_phrase" NOT LIKE 'ng% n%'
-        AND "vietnamese_phrase" NOT LIKE 'n% ng%'
-        AND "vietnamese_phrase" NOT LIKE 'nh% nh%'
-        AND "vietnamese_phrase" NOT LIKE 'nh% n%'
-        AND "vietnamese_phrase" NOT LIKE 'n% nh%';
-
-        -- CASE FOR p LETTER
-        SELECT * from "just_two_words"
-        WHERE "vietnamese_phrase" LIKE 'p% p%'
-        AND "vietnamese_phrase" NOT LIKE 'ph% ph%'
-        AND "vietnamese_phrase" NOT LIKE 'ph% p%'
-        AND "vietnamese_phrase" NOT LIKE 'p% ph%';
-
-        -- CASE FOR t LETTER
-        SELECT * from "just_two_words"
-        WHERE "vietnamese_phrase" LIKE 't% t%'
-        AND "vietnamese_phrase" NOT LIKE 'th% th%'
-        AND "vietnamese_phrase" NOT LIKE 'th% t%'
-        AND "vietnamese_phrase" NOT LIKE 't% th%'
-        AND "vietnamese_phrase" NOT LIKE 'tr% tr%'
-        AND "vietnamese_phrase" NOT LIKE 'tr% t%'
-        AND "vietnamese_phrase" NOT LIKE 't% tr%';
-
-        -- CASE FOR c LETTER
-        SELECT * from "just_two_words"
-        WHERE "vietnamese_phrase" LIKE 'c% c%'
-        AND "vietnamese_phrase" NOT LIKE 'ch% ch%'
-        AND "vietnamese_phrase" NOT LIKE 'ch% c%'
-        AND "vietnamese_phrase" NOT LIKE 'c% ch%';
+	-- OTHER "OPTION"
+	--    -- CASE FOR k LETTER
+	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'k% k%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'kh% kh%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'kh% k%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'k% kh%'
+	
+	--    -- CASE FOR n LETTER
+	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'n% n%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ng% ng%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ng% n%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'n% ng%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'nh% nh%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'nh% n%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'n% nh%'
+	
+	--    -- CASE FOR p LETTER
+	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'p% p%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ph% ph%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ph% p%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'p% ph%'
+	
+	--    -- CASE FOR t LETTER
+	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 't% t%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'th% th%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'th% t%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 't% th%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'tr% tr%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'tr% t%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 't% tr%'
+	
+	--    -- CASE FOR c LETTER
+	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'c% c%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ch% ch%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ch% c%'
+	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'c% ch%'
 
 -- ADD NEW VIETNAMESE PHRASE INTO DATABASE
 INSERT INTO "just_two_words" ("vietnamese_phrase", "vietnamese_phrase_search")
