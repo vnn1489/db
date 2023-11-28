@@ -5,7 +5,7 @@
 --			+ "translation_word": TEXT NOT NULL,
 --			+ "word_search": TEXT NOT NULL
 
--- I CREATE NEW TABLES INSIDE VIETNAMESE-ENGLISH DICTIONARY WITH THE FOLLOWING PROPERTIES
+-- I WILL CREATE NEW A FEW TABLES INSIDE THE VIETNAMESE-ENGLISH DICTIONARY WITH THE FOLLOWING PROPERTIES
 CREATE TABLE "vietnamese_name" (
 	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "first_name" TEXT NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE "just_two_words" (
 	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
   	"vietnamese_phrase" TEXT NOT NULL,
 	"english_meaning" TEXT,
-	"vietnamese_phrase_search" TEXT,
+	"vietnamese_phrase_search" TEXT
 );
 
 CREATE TABLE "combine_name_with_phrase" (

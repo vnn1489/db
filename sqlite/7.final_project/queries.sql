@@ -1,13 +1,12 @@
 -- AFTER CREATED TABLE vietnamese_name FROM schema.sql
--- I WILL ADD MY NAME INTO vietnamese_name TABLE. 
+-- I WILL ADD A FEW VIETNAMESE NAME INTO vietnamese_name TABLE. 
 INSERT INTO "vietnamese_name" ("first_name")
-VALUES ('Nguyen'), ("Gam");
+VALUES ('Nguyen'), ("Gam"), ("Trang");
 
 -- AFTER CREATED TABLE just_two_words FROM schema.sql
 -- I WILL COPY THE DATA THAT I NEED TO GET FROM THE translation TABLE.
 INSERT INTO "just_two_words"
-SELECT "id" ,"word", "translation_word", "word_search"
-FROM "translation"
+SELECT * FROM "translation"
 WHERE LENGTH("word") - LENGTH(REPLACE("word", ' ', '')) = 1
 AND (
 	"word" LIKE 'q% q%' OR
@@ -141,7 +140,7 @@ AND "vietnamese_name"."first_name" = 'Gam';
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'kh% kh%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'kh% k%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'k% kh%'
-	
+
 	--    -- CASE FOR n LETTER
 	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'n% n%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ng% ng%'
@@ -150,13 +149,13 @@ AND "vietnamese_name"."first_name" = 'Gam';
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'nh% nh%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'nh% n%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'n% nh%'
-	
+
 	--    -- CASE FOR p LETTER
 	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'p% p%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ph% ph%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ph% p%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'p% ph%'
-	
+
 	--    -- CASE FOR t LETTER
 	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 't% t%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'th% th%'
@@ -165,7 +164,7 @@ AND "vietnamese_name"."first_name" = 'Gam';
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'tr% tr%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'tr% t%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 't% tr%'
-	
+
 	--    -- CASE FOR c LETTER
 	--    WHERE "just_two_words"."vietnamese_phrase" LIKE 'c% c%'
 	--    AND "just_two_words"."vietnamese_phrase" NOT LIKE 'ch% ch%'
