@@ -1,6 +1,6 @@
 # Design Document
 By VU NGUYEN NGUYEN
-Video overview: <URL HERE>
+Video overview: https://youtu.be/5FszP6bX8c8
 
 ## Scope
 * What is the purpose of your database?
@@ -34,14 +34,14 @@ Video overview: <URL HERE>
 #### Entities
 The database includes the following entities:
 - “vietnamese_name” table includes:
-    + "id"          :INTEGER
+    + "id"          :INTEGER AUTOINCREMENT
     + "first_name"  :TEXT NOT NULL
     + "middle_name" :TEXT
     + "last_name"   :TEXT
     + PRIMARY KEY   :"id"
 
 - “just_two_words” table includes:
-    + "id"                          :INTEGER
+    + "id"                          :INTEGER AUTOINCREMENT
     + "vietnamese_phrase"           :TEXT NOT NULL
     + "english_meaning"             :TEXT
     + "vietnamese_phrase_search"    :TEXT
